@@ -80,10 +80,39 @@
 /* ---------------- END OF ASIDE --------------------------- */
 
 /* --------------- SECTION --------------------------------- */
+.main-section-container{
+    display: flex;
+}
 .main-section{
     border: 2px solid black;
     width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
     
+}
+.form label{
+    font-size: 1.3rem;
+}
+.form .title{
+    margin-bottom: 0.5rem;
+}
+.form #title{
+    padding: 5px;
+}
+.form .description{
+    margin-bottom: 0.5rem;
+}
+.form #description{
+    padding: 5px;
+}
+.form .dueDate{
+    margin-bottom: 0.5rem;
+}
+.form #dueDate {
+    padding: 5px;
 }
 /* ---------------- END OF SECTION ------------------------- */
 

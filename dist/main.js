@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\nconst header = document.querySelector('#header')\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("\n\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ })
 
