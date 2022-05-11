@@ -45,30 +45,35 @@
     margin-bottom: 50px;
     border-bottom: 2px double lightgray;
 }
-.aside .navbar{
+.aside .addNewProject{
     padding-left: 1rem;
     width: 70%;
     border-radius: 10px;
-}
-.navbar:hover{
-    cursor: pointer;
-    background-color: #66fd66;
+    gap: 1rem;
 }
 .aside .projects-container{
     width: 25vw;
     background-color: rgb(229 206 206 / 40%);
     padding: 1rem;
-}
-.aside .navbar li{
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: 500;
-    gap: 1rem;
+    flex-flow: column;
 }
-.aside .navbar li:hover{
+.addNewProject{
+    display: flex;
+}
+.addNewProject p{
+    font-size: 1.3rem;
+    align-self: center;
+}
+.addNewProject:hover{
+    cursor: pointer;
+    background-color: #66fd66;
     font-weight: bold;
+}
+.aside .navbar{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 .aside .add-icon{
     width: 40px;
@@ -77,6 +82,22 @@
 }
 .aside .add-icon:hover{
     transform: rotate(45deg);
+}
+.createdLi{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3rem;
+    width: -webkit-fill-available;
+}
+.createdLi:hover{
+    cursor: pointer;
+    background-color: #66fd66;
+    width: 70%;
+    border-radius: 30px;
 }
 /* ---------------- END OF ASIDE --------------------------- */
 
