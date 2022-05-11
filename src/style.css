@@ -17,6 +17,7 @@
     background-color: lemonchiffon;
     align-items: center;
     justify-content: end;
+    padding-right: 2rem;
 }
 .header h1{
     font-size: 5rem;
@@ -90,8 +91,34 @@
     justify-content: center;
     align-items: center;
 }
-.form{
+form {
+    visibility: hidden;
+}
+#project-name {
+    padding: 7px;
+    width: 15rem;
+}
+.project-name{
+    display: flex;
+    flex-flow: column nowrap;
+}
+.project-name label{
+    font-size: 1.3rem;
+
+}
+.project-name.show{
+    visibility: visible;
+}
+.project-button{
+    width: 6rem;
+    align-self: center;
+    padding: 0.5rem;
+    font-weight: 600;
+    background-color: lemonchiffon;
     
+}
+.form.show{
+    visibility: visible;
 }
 .form label{
     font-size: 1.3rem;
@@ -100,20 +127,21 @@
     margin-bottom: 0.5rem;
 }
 .form #title{
-    padding: 5px;
+    padding: 7px;
 }
 .form .description{
     margin-bottom: 0.5rem;
 }
 .form #description{
-    padding: 5px;
+    padding: 7px;
 }
 .form .dueDate{
     margin-bottom: 0.5rem;
 }
 .form #dueDate {
-    padding: 5px;
+    padding: 7px;
 }
+
 /* ---------------- END OF SECTION ------------------------- */
 
 /* -------------- FOOTER ---------------------------------- */
