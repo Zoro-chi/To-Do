@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Pacifico&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+} 
+/* ------------------------HEADER------------------------- */
+.logo{
+    height: 150px;
+    width: 150px;
+}
+.header{
+    display: flex;
+    height: 20vh;
+    gap: 5rem;
+    background-color: lemonchiffon;
+    align-items: center;
+    padding-left: 2rem;
+}
+.header h1{
+    font-size: 9rem;
+    font-weight: 100;
+}
+/* --------------END OF HEADER------------------------------ */
+/* --------------- ASIDE ------------------------------------ */
+.aside{
+    height: 70vh;
+}
+.aside h2{
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.aside .navbar li{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 300;
+}
+.aside .add-icon{
+    width: 60px;
+}
+/* ---------------- END OF ASIDE --------------------------- */
+/* -------------- FOOTER ---------------------------------- */
+.footer{
+    height: 10vh;
+    background-color: lemonchiffon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+/* -------------- END OF FOOTER ---------------------------- */
