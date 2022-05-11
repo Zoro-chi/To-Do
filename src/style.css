@@ -7,49 +7,94 @@
 } 
 /* ------------------------HEADER------------------------- */
 .logo{
-    height: 150px;
-    width: 150px;
+    height: 90px;
+    width: 90px;
 }
 .header{
     display: flex;
-    height: 20vh;
-    gap: 5rem;
+    height: 15vh;
+    gap: 2rem;
     background-color: lemonchiffon;
     align-items: center;
-    padding-left: 2rem;
+    justify-content: end;
 }
 .header h1{
-    font-size: 9rem;
+    font-size: 5rem;
     font-weight: 100;
 }
 /* --------------END OF HEADER------------------------------ */
+
+/* ---------------- MAIN CONTAINER ----------------------------- */
+.main-container{
+    height: 77vh;
+    display: flex;
+    flex-flow: row nowrap;
+    padding-left: 30px;
+    padding-top: 30px;
+    gap: 0.5rem;
+}
+/* ----------------- END OF MAIN CONTAINER ---------------------- */
+
 /* --------------- ASIDE ------------------------------------ */
 .aside{
-    height: 70vh;
 }
 .aside h2{
-    font-size: 4rem;
+    font-size:2.5rem;
     font-weight: 600;
     margin-bottom: 50px;
+    border-bottom: 2px double lightgray;
+}
+.aside .navbar{
+    padding-left: 1rem;
+    width: 70%;
+    border-radius: 10px;
+}
+.navbar:hover{
+    cursor: pointer;
+    background-color: #66fd66;
+}
+.aside .projects-container{
+    width: 25vw;
+    background-color: rgb(229 206 206 / 40%);
+    padding: 1rem;
 }
 .aside .navbar li{
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 1.3rem;
+    font-weight: 500;
+    gap: 1rem;
+}
+.aside .navbar li:hover{
+    font-weight: bold;
 }
 .aside .add-icon{
-    width: 60px;
+    width: 40px;
+    background: #66fd66;
+    border-radius: 100px;
+}
+.aside .add-icon:hover{
+    transform: rotate(45deg);
 }
 /* ---------------- END OF ASIDE --------------------------- */
+
+/* --------------- SECTION --------------------------------- */
+.main-section{
+    border: 2px solid black;
+    width: 70vw;
+    
+}
+/* ---------------- END OF SECTION ------------------------- */
+
 /* -------------- FOOTER ---------------------------------- */
 .footer{
-    height: 10vh;
+    height: 8vh;
     background-color: lemonchiffon;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 1rem;
+    letter-spacing: 0.3rem;
 }
 /* -------------- END OF FOOTER ---------------------------- */
