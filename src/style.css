@@ -82,32 +82,39 @@
     background: #66fd66;
     border-radius: 100px;
 }
-.dltIcon{
-    width: 40px;
-    background: #fa2e2e;
-    border-radius: 100px;
+.dltButton{
+    width: 2.5rem;
+    border: none;
 }
-.dltIcon:hover{
+.dltButton:hover{
+    background-color: rgba(240, 20, 20, 0.76);
+    cursor: pointer;
+}
+.dltButton:active{
     transform: rotate(45deg);
 }
 .aside .add-icon:hover{
     transform: rotate(45deg);
 }
+.newItemDiv{
+    display: flex;
+    width: 55%;
+    justify-content: space-between;
+    padding-top: 2rem;
+}
 .createdLi{
-    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1.3rem;
-    width: -webkit-fill-available;
+    width: fit-content;
     gap: 2rem;
 }
 .createdLi:hover{
     cursor: pointer;
     background-color: #66fd66;
-    width: 70%;
     border-radius: 30px;
 }
 /* ---------------- END OF ASIDE --------------------------- */
@@ -123,56 +130,34 @@
     justify-content: center;
     align-items: center;
 }
-form {
-    visibility: hidden;
-}
 #project-name {
     padding: 7px;
     width: 15rem;
 }
-.project-name{
+.project-form{
     display: flex;
+    flex-flow: column;
+    padding-top: 1rem;
+    gap: 0.5rem;
+    padding-left: 3rem;
+}
+.project-name{
+    display: none;
     flex-flow: column nowrap;
 }
-.project-name label{
-    font-size: 1.3rem;
-
-}
 .project-name.show{
-    visibility: visible;
+    display: flex;
+
 }
 .project-button{
     width: 6rem;
-    align-self: center;
+    align-self: start;
     padding: 0.5rem;
     font-weight: 600;
     background-color: lemonchiffon;
     
 }
-.form.show{
-    visibility: visible;
-}
-.form label{
-    font-size: 1.3rem;
-}
-.form .title{
-    margin-bottom: 0.5rem;
-}
-.form #title{
-    padding: 7px;
-}
-.form .description{
-    margin-bottom: 0.5rem;
-}
-.form #description{
-    padding: 7px;
-}
-.form .dueDate{
-    margin-bottom: 0.5rem;
-}
-.form #dueDate {
-    padding: 7px;
-}
+
 
 /* ---------------- END OF SECTION ------------------------- */
 

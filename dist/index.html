@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/style.css">
+    <script src="https://kit.fontawesome.com/6dbed7fcf7.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -22,6 +23,13 @@
                 <div class="projects-container">
                     <h2>Projects</h2>
                     <div class="addNewProject"> <img class="add-icon" src="../src/images/addIcon.png" alt="add icon"> <p> Add project </p></div>
+
+                    <div class="project-name">
+                        <form action="" class="project-form">
+                            <input type="text" placeholder="Name" id="project-name" name="project-name">
+                            <button class="project-button" type="button"> Register </button>
+                        </form>
+                    </div>
                     <ul class="navbar"> 
                         
                     </ul>
@@ -31,33 +39,8 @@
 
         <div class="main-section-container">
             <section class="main-section">
-                <form class="project-name" action="">
-                    <label for="project-name"> Project name </label> <br>
-                    <input id="project-name" name="project-name" type="text"> <br>
-                    <button class="project-button" type="button"> Register </button>
-                </form>
 
-                <form class="form" action="">
-                    <div class="title">
-                        <label for="title"> Title </label> <br>
-                        <input id="title" name="title" type="text">
-                    </div>
-
-                    <div class="description">
-                        <label for="description"> Description </label> <br>
-                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                    </div>
-
-                    <div class="dueDate">
-                        <label for="dueDate"> Due date </label> <br>
-                        <input type="date" name="dueDate" id="dueDate">
-                    </div>
-
-                    <div class="priority">
-                        <label for="priority"> priority </label> <br>
-                        <input type="color" name="priority" id="priority">
-                    </div>
-                </form>
+            
             </section>
         </div>
 
