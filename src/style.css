@@ -71,6 +71,7 @@
     cursor: pointer;
     background-color: #66fd66;
     font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 .aside .navbar{
     display: flex;
@@ -82,13 +83,18 @@
     background: #66fd66;
     border-radius: 100px;
 }
+.dltIcon{
+    pointer-events: none;
+}
 .dltButton{
     width: 2.5rem;
     border: none;
+    transition: all 0.3s ease-in;
 }
 .dltButton:hover{
     background-color: rgba(240, 20, 20, 0.76);
     cursor: pointer;
+    flex-grow: 0.2;
 }
 .dltButton:active{
     transform: rotate(45deg);
@@ -115,6 +121,7 @@
 .createdLi:hover{
     cursor: pointer;
     background-color: #66fd66;
+    width: calc(100% + 1rem);
     border-radius: 30px;
 }
 /* ---------------- END OF ASIDE --------------------------- */
