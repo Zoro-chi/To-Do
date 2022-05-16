@@ -89,7 +89,11 @@
 .dltButton{
     width: 2.5rem;
     border: none;
+<<<<<<< HEAD
     transition: all 0.3s ease-in;
+=======
+    transition: all 0.2s ease-out;
+>>>>>>> overlay
 }
 .dltButton:hover{
     background-color: rgba(240, 20, 20, 0.76);
@@ -98,6 +102,26 @@
 }
 .dltButton:active{
     transform: rotate(45deg);
+}
+.addTaskButton{
+    width: 2.5rem;
+    border: none;
+    transition: all 0.2s ease-out;
+}
+.addTaskIcon{
+    pointer-events: none;
+}
+.add-task-image{
+    width: 40px;
+    background: #66fd66;
+    border-radius: 100px;
+}
+.addTaskButton:hover{
+    background-color: #66fd66;
+    cursor: pointer;
+}
+.addTaskButton:active{
+    transform: translateY(-20px);
 }
 .aside .add-icon:hover{
     transform: rotate(45deg);
@@ -118,12 +142,15 @@
     width: fit-content;
     gap: 2rem;
 }
+<<<<<<< HEAD
 .createdLi:hover{
     cursor: pointer;
     background-color: #66fd66;
     width: calc(100% + 1rem);
     border-radius: 30px;
 }
+=======
+>>>>>>> overlay
 /* ---------------- END OF ASIDE --------------------------- */
 
 /* --------------- SECTION --------------------------------- */
@@ -163,6 +190,19 @@
     font-weight: 600;
     background-color: lemonchiffon;
     
+}
+.task-form{
+    display: flex;
+    flex-flow: column;
+    gap: 1.3rem;
+    width: 300px;
+    border: 5px solid;
+    padding: 1.3rem;
+}
+.task-name
+.task-description
+.due-date{
+    padding: 7px;
 }
 
 

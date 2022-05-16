@@ -1,4 +1,7 @@
-import {newProject, projectForm, projectName, button, navbar} from './dom.js'
+import {newProject, projectForm, button, projectName, 
+        newProjectItem, registerButton, addTask, nodes,
+        dltProject} from './dom.js'
+
 
 class Projects{
     constructor(name){
@@ -20,6 +23,7 @@ class Tasks{
         this.dateDue = dateDue
         this.priority = priority
     }
+<<<<<<< HEAD
 }
 
 let projectLibrary = []
@@ -52,14 +56,18 @@ const newProjectItem = () =>{
         projectLibrary.splice(selectedProject, 1)
     }    
     dltButton.addEventListener('click', dltProject)
+=======
+>>>>>>> overlay
 }
+
+let projectLibrary = []
 
 const addProject = () => {
     // SHOWS THE INPUT FORM FOR COLLECTION
     projectForm.classList.toggle('show')
 }
-newProject.addEventListener('click', addProject)
 
+<<<<<<< HEAD
 const registerButton = () => {
     // HIDES INPUT FORM AFTER COLLECTION
     projectName.classList.remove('show')
@@ -73,6 +81,10 @@ const registerButton = () => {
     projectForm.classList.toggle('show')
     console.log(projectLibrary)
 }
+=======
+// Event Listeners
+newProject.addEventListener('click', addProject)
+>>>>>>> overlay
 button.addEventListener('click', registerButton)
 
 const addTask = () =>{
@@ -91,6 +103,7 @@ const addTask = () =>{
     taskName.setAttribute('type', 'text')
     taskName.setAttribute('name', 'task-name')
 
+<<<<<<< HEAD
     // CREATE TEXTAREA FOR TASK DESCRIPTION
     const taskDescription = document.createElement('textarea')
     taskDescription.classList.add('task-description')
@@ -115,3 +128,6 @@ const addTask = () =>{
 
 }
 
+=======
+export {Projects, Tasks, projectLibrary}
+>>>>>>> overlay
