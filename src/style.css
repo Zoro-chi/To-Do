@@ -92,7 +92,7 @@
 }
 .dltButton{
     width: 2.5rem;
-    border: none;
+    border: 1px solid black;
     transition: all 0.2s ease-out;
 }
 .dltButton:hover{
@@ -105,7 +105,7 @@
 }
 .addTaskButton{
     width: 2.5rem;
-    border: none;
+    border: 1px solid black;
     transition: all 0.2s ease-out;
 }
 i{
