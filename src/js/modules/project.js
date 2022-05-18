@@ -1,7 +1,5 @@
 
 
-const projectLibrary = []
-
 class Project{
     constructor(name){
         this.name = name
@@ -38,3 +36,6 @@ class Project{
     }
 }
 
+const projectLibrary =[]
+
+export {Project, projectLibrary}
