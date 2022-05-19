@@ -1,11 +1,10 @@
 
 
 class Tasks{
-    constructor(name, description, dueDate, priority){
+    constructor(name, description, dueDate){
         this.name = name
         this.description = description
         this.date = dueDate
-        this.priority = priority
     }
 
     setName(name){

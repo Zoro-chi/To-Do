@@ -39,7 +39,8 @@ class UI{
         deleteProjectButton.addEventListener('click', UI.deleteProject)
         deleteProjectButton.classList.add('dltButton')
         const deleteProjectIcon = document.createElement('i')
-            
+        deleteProjectIcon.className = 'fa-solid fa-trash'
+        deleteProjectButton.appendChild(deleteProjectIcon)
         newProject.append(deleteProjectButton)
 
         // CREATE ADD TASK TO PROJECT BUTTON
@@ -47,7 +48,8 @@ class UI{
         addTaskToProject.addEventListener('click', UI.addTask)
         addTaskToProject.classList.add('addTaskButton')
         const addTaskIcon = document.createElement('i')
-
+        addTaskIcon.className = 'fa-solid fa-plus'
+        addTaskToProject.appendChild(addTaskIcon)
         newProject.append(addTaskToProject)
         const projectDisplay = document.querySelector('.navbar')
         projectDisplay.appendChild(newProjectDiv)
@@ -74,12 +76,51 @@ class UI{
 
         // CREATE INPUT ELEMENT FOR TASK NAME
         const taskName = document.createElement('input')
+        taskName.classList.add('taskName')
         taskName.setAttribute('type', 'text')
         taskName.setAttribute('name', 'taskName')
         taskName.setAttribute('placeholder', 'Task name')
         form.appendChild(taskName)
 
+        // CREATE TEXTAREA ELEMENT FOR TASK DESCRIPTION
+        const taskDescription = document.createElement('textarea')
+        taskDescription.classList.add('taskDescription')
+        taskDescription.setAttribute('rows', '10')
+        taskDescription.setAttribute('placeholder', 'Description')
+        form.appendChild(taskDescription)
+
+        // CREATE DUE-DATE INPUT
+        const dateDiv = document.createElement('div')
+        dateDiv.classList.add('dateDiv')
+        const dateLabel = document.createElement('label')
+        dateLabel.classList.add('dateLabel')
+        dateLabel.innerText = 'Due date'
+        const date = document.createElement('input')
+        date.classList.add('dueDate')
+        date.setAttribute('type', 'date')
+        dateDiv.appendChild(dateLabel)
+        dateDiv.appendChild(date)
+        form.appendChild(dateDiv)
+
+        // CREATE ADD BUTTON
+        const buttonDiv = document.createElement('div')
+        buttonDiv.classList.add('buttonDiv')
+        const button = document.createElement('button')
+        button.className = 'submitTask addTaskButton fa-solid fa-plus'
+        button.setAttribute('type', 'button')
+        // button.addEventListener('click', )
+        buttonDiv.appendChild(button)
+        form.appendChild(buttonDiv)
+        
+        // DISPLAY FORM 
+        if(display.childElementCount === 0){
+            display.appendChild(formDiv)
+        }else {
+            console.log('already')
+        }
+    
     }
+
 }
 
 

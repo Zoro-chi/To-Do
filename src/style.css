@@ -5,6 +5,15 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 } 
+button{
+    box-shadow: 2px 2px 2px black
+}
+button:hover{
+    cursor: pointer;
+}
+button:active{
+    transform: translateY(1px);
+}
 /* ------------------------HEADER------------------------- */
 .logo{
     height: 90px;
@@ -91,23 +100,17 @@
     pointer-events: none;
 }
 .dltButton{
-    width: 2rem;
     height: 2rem;
-    border: 1px solid black;
     transition: all 0.2s ease-out;
 }
 .dltButton:hover{
     background-color: rgba(240, 20, 20, 0.76);
-    cursor: pointer;
-    flex-grow: 0.2;
 }
 .dltButton:active{
     transform: rotate(45deg);
 }
 .addTaskButton{
-    width: 2rem;
     height: 2rem;
-    border: 1px solid black;
     transition: all 0.2s ease-out;
 }
 i{
@@ -121,7 +124,6 @@ i{
 }
 .addTaskButton:hover{
     background-color: #66fd66;
-    cursor: pointer;
 }
 .addTaskButton:active{
     transform: translateY(-20px);
@@ -181,9 +183,8 @@ i{
     padding: 0.5rem;
     font-weight: 600;
     background-color: lemonchiffon;
-    
 }
-.task-form{
+.taskForm{
     display: flex;
     flex-flow: column;
     gap: 1.3rem;
@@ -191,12 +192,23 @@ i{
     border: 5px solid;
     padding: 1.3rem;
 }
-.task-name
-.task-description
-.due-date{
+.taskName,
+.taskDescription,
+.dueDate{
     padding: 7px;
 }
-
+.dateDiv{
+    display: flex;
+    flex-flow: column;
+}
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+}
+.submitTask{
+    width: 2.5rem;
+    border-radius: 100px;
+}
 
 /* ---------------- END OF SECTION ------------------------- */
 
