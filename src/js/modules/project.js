@@ -34,8 +34,8 @@ class Project{
     deleteTask(taskName){
         this.tasks.filter( task => task.name !== taskName)
     }
+    
 }
 
-const projectLibrary =[]
 
-export {Project, projectLibrary}
+export {Project}
