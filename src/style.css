@@ -155,6 +155,7 @@ i{
     border: 2px solid black;
     width: 70vw;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
 }
@@ -192,6 +193,13 @@ i{
     border: 5px solid;
     padding: 1.3rem;
 }
+.closeButton{
+    width: 20px;
+    border-radius: 100%;
+    align-self: end;
+    background-color: rgba(240, 20, 20, 0.76);
+    margin-top: -10px;
+}
 .taskName,
 .taskDescription,
 .dueDate{
@@ -208,6 +216,17 @@ i{
 .submitTask{
     width: 2.5rem;
     border-radius: 100px;
+}
+.alertDiv{
+    padding: 0.5rem;
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: -50px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 10px;
 }
 
 /* ---------------- END OF SECTION ------------------------- */

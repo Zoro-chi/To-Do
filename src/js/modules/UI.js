@@ -1,13 +1,17 @@
 import { Project } from './project.js'
 import { ProjectStore } from './projectLibrary.js'
+import { Tasks } from './tasks.js'
 
 // DOM SELECTORS 
 const projectNameDiv = document.querySelector('.project-name')
 const addNewProject = document.querySelector('.addNewProject')
 const display = document.querySelector('.display')
 const registerButton = document.querySelector('.project-button')
+const mainSection = document.querySelector('.main-section')
 
-class UI{
+let newProjectName;
+
+class UI {
 
 
     // ADD PROJECT TO PROJECT LIST
@@ -20,9 +24,9 @@ class UI{
         // HIDE INPUT FORM
         projectNameDiv.classList.toggle('show')
 
-        let newProjectName = document.querySelector('#project-name').value
+        newProjectName = document.querySelector('#project-name').value
         let nameInput = document.querySelector('#project-name')
-        const newProjectObject = new Project(newProjectName)
+        const newProjectObject = new Project(newProjectName, newProjectName)
         ProjectStore.addToLibrary(newProjectObject)
         
 
@@ -60,6 +64,7 @@ class UI{
         e.target.parentElement.remove()
         const el = e.target.parentElement.textContent
         ProjectStore.deleteFromLibrary(el)
+        UI.showAlert(`Project ${newProjectName} deleted from library`, "success")
     }
 
         // ADD TASK TO PROJECT
@@ -73,6 +78,15 @@ class UI{
         const form = document.createElement('form')
         form.classList.add('taskForm')
         formDiv.appendChild(form)
+
+        // CLOSE TASK FORM
+        const closeButton = document.createElement('button')
+        closeButton.classList.add('closeButton')
+        closeButton.innerText = 'X'
+        closeButton.addEventListener('click', () => {
+            display.removeChild(formDiv)
+        })
+        form.appendChild(closeButton)
 
         // CREATE INPUT ELEMENT FOR TASK NAME
         const taskName = document.createElement('input')
@@ -108,18 +122,57 @@ class UI{
         const button = document.createElement('button')
         button.className = 'submitTask addTaskButton fa-solid fa-plus'
         button.setAttribute('type', 'button')
-        // button.addEventListener('click', )
+        button.addEventListener('click', UI.createTask)
         buttonDiv.appendChild(button)
         form.appendChild(buttonDiv)
         
         // DISPLAY FORM 
         if(display.childElementCount === 0){
             display.appendChild(formDiv)
-        }else {
-            console.log('already')
+            
         }
-    
     }
+
+    // CREATE A TASK
+    static createTask = () =>{
+        // COLLECT TASK INFO
+        const taskName = document.querySelector('.taskName').value
+        const taskDescription = document.querySelector('.taskDescription').value
+        const date = document.querySelector('.dueDate').value
+        const myId = newProjectName
+
+        // CREATE TASK OBJECT
+        const newTaskObject = new Tasks(myId, taskName, taskDescription, date)
+        console.log(newTaskObject)
+
+        // ADD TASK TO CORESSPONDING PROJECT
+        const myProject = ProjectStore.findProject(myId)[0].tasks
+        myProject.push(newTaskObject)
+        UI.showAlert(`Task ${taskName} added to ${newProjectName}`, 'success')
+    }
+
+    // SHOW ALERTS
+    static showAlert = (message, status) => {
+        // CREATE ALERT DIV
+        const alertDiv = document.createElement('div')
+        alertDiv.classList.add('alertDiv')
+        const alertMsg = document.createTextNode(message)
+        // alertMsg.classList.add('alertMsg')
+        alertDiv.appendChild(alertMsg)
+
+        if(status === "err"){
+            alertDiv.style.backgroundColor = '#f03f3f'
+        }else {
+            alertDiv.style.backgroundColor = '#80e380'
+        }
+
+        mainSection.insertBefore(alertDiv, display)
+
+        setTimeout(()=>{
+            mainSection.removeChild(alertDiv)
+        },3000)
+    }
+
 
 }
 

@@ -1,10 +1,19 @@
-
+import { Project } from "./project"
 
 class Tasks{
-    constructor(name, description, dueDate){
+    constructor(myId, name, description, dueDate){
+        this.myId = myId
         this.name = name
         this.description = description
         this.date = dueDate
+    }
+
+    setId(myId){
+        this.myId = myId
+    }
+
+    getId(){
+        return this.myId
     }
 
     setName(name){
@@ -39,3 +48,5 @@ class Tasks{
         return this.priority
     }
 }
+
+export { Tasks }

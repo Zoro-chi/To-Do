@@ -1,8 +1,9 @@
 
 
 class Project{
-    constructor(name){
+    constructor(name, myId){
         this.name = name
+        this.myId = myId
         this.tasks = []
     }
 
@@ -14,6 +15,14 @@ class Project{
         return this.name
     }
 
+    setId(myId){
+        this.myId = myId
+    }
+
+    getId(){
+        return this.myId
+    }
+    
     setTasks(tasks){
         this.tasks = tasks
     }
@@ -36,6 +45,6 @@ class Project{
     }
     
 }
-
+Project.prototype.id = ''
 
 export {Project}

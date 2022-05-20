@@ -11,6 +11,10 @@ class ProjectStore{
         this.store.splice(index, 1)
     }
 
+    static findProject = (myId) =>{
+        return this.store.filter( project => project.myId === myId )
+    }
+
 }
 
 // AN ARRAY TO STORE PROJECTS
