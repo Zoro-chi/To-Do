@@ -138,25 +138,41 @@ class UI {
   static projectShow = (e) => {
     // CLEAR DISPLAY
     display.innerText = "";
+    display.setAttribute("display", "flex");
+    display.setAttribute("flex-flow", "row");
+    display.setAttribute("gap", "1rem");
 
+    // PROJECT SELECTED THROUGH CLICK EVENT
     const selectedProject = ProjectStore.store.filter(
       (project) => project.name === e.target.textContent
     );
-    console.log(ProjectStore.store);
-    console.log(selectedProject);
 
-    // CREATE A CARD TO DISPLAY EACH PROJECT TASK
-    const projectCard = document.createElement("div");
-    projectCard.classList.add("projectCard");
-    const taskName = document.createElement("h2");
-    taskName.classList.add("projectCardName");
-    const taskDescription = document.createElement("p");
-    taskDescription.classList.add("projectCardDescription");
-    const dueDate = document.createElement("p");
-    dueDate.classList.add("projectCardDate");
-    projectCard.appendChild(taskName);
-    projectCard.appendChild(taskDescription);
-    projectCard.appendChild(dueDate);
+    // TASKS ON SELECTED PROJECT
+    const tasksArr = selectedProject[0].tasks;
+    console.log(tasksArr);
+
+    // CREATE AND DISPLAY EACH TASK ON SCREEN
+    tasksArr.forEach((task) => {
+      // CREATE A CARD TO DISPLAY EACH PROJECT TASK
+      const projectCard = document.createElement("div");
+      projectCard.classList.add("projectCard");
+      const taskName = document.createElement("h2");
+      taskName.classList.add("projectCardName");
+      const taskDescription = document.createElement("p");
+      taskDescription.classList.add("projectCardDescription");
+      const dueDate = document.createElement("p");
+      dueDate.classList.add("projectCardDate");
+      projectCard.appendChild(taskName);
+      projectCard.appendChild(taskDescription);
+      projectCard.appendChild(dueDate);
+
+      // SET TASK DETAILS
+      taskName.innerText = `Task : ${task.name}`;
+      taskDescription.innerText = `Description : ${task.description}`;
+      dueDate.innerText = `Due Date : ${task.date}`;
+
+      display.appendChild(projectCard);
+    });
   };
 
   // CREATE A TASK
