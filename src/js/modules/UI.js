@@ -8,6 +8,7 @@ const addNewProject = document.querySelector(".addNewProject");
 const display = document.querySelector(".display");
 const registerButton = document.querySelector(".project-button");
 const mainSection = document.querySelector(".main-section");
+const navbar = document.querySelector(".navbar");
 
 let newProjectName;
 
@@ -71,6 +72,8 @@ class UI {
 
   // ADD TASK TO PROJECT
   static addTask = () => {
+    // CLEAR DISPLAY
+    display.innerText = "";
     // CREATE A FORM TO COLLECT TASK DETAILS
     // CREATE FORM DIV
     const formDiv = document.createElement("div");
@@ -128,14 +131,21 @@ class UI {
     buttonDiv.appendChild(button);
     form.appendChild(buttonDiv);
 
-    // DISPLAY FORM
-    if (display.childElementCount === 0) {
-      display.appendChild(formDiv);
-    }
+    // // DISPLAY FORM
+    // if (display.childElementCount === 0) {
+    display.appendChild(formDiv);
+    // }
   };
 
   // DISPLAY PROJECT CONTENTS/TASKS WHEN CLICKED
   static projectShow = (e) => {
+    // ADD YELLOW MARKER FOR CURRENT PROJECT
+    let projects = navbar.children;
+    for (let project of projects) {
+      project.classList.remove("active");
+    }
+    e.target.classList.add("active");
+
     // CLEAR DISPLAY
     display.innerText = "";
     display.setAttribute("display", "flex");

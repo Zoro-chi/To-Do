@@ -1,50 +1,47 @@
+class Project {
+  constructor(name, myId) {
+    this.name = name;
+    this.myId = myId;
+    this.tasks = [];
+  }
 
+  setName(name) {
+    this.name = name;
+  }
 
-class Project{
-    constructor(name, myId){
-        this.name = name
-        this.myId = myId
-        this.tasks = []
-    }
+  getName() {
+    return this.name;
+  }
 
-    setName(name){
-        this.name = name
-    }
+  setId(myId) {
+    this.myId = myId;
+  }
 
-    getName(){
-        return this.name
-    }
+  getId() {
+    return this.myId;
+  }
 
-    setId(myId){
-        this.myId = myId
-    }
+  setTasks(task) {
+    this.tasks.push(task);
+  }
 
-    getId(){
-        return this.myId
-    }
-    
-    setTasks(tasks){
-        this.tasks = tasks
-    }
+  getTasks() {
+    return this.tasks;
+  }
 
-    getTasks(){
-        return this.tasks
-    }
+  getTask(taskName) {
+    return this.tasks.find((task) => task.getName() === taskName);
+  }
 
-    getTask(taskName){
-        return this.tasks.find( task => task.getName() === taskName)
-    }
+  addTask(newTask) {
+    if (this.tasks.find((task) => task.getName() === newTask.name))
+      return this.tasks.push(newTask);
+  }
 
-    addTask(newTask){
-        if (this.tasks.find( task => task.getName() === newTask.name))
-        return this.tasks.push(newTask)
-    }
-
-    deleteTask(taskName){
-        this.tasks.filter( task => task.name !== taskName)
-    }
-    
+  deleteTask(taskName) {
+    this.tasks.filter((task) => task.name !== taskName);
+  }
 }
-Project.prototype.id = ''
+Project.prototype.id = "";
 
-export {Project}
+export { Project };
