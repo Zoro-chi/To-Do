@@ -67,7 +67,7 @@ class UI {
     e.target.parentElement.remove();
     const el = e.target.parentElement.textContent;
     ProjectStore.deleteFromLibrary(el);
-    UI.showAlert(`Project ${newProjectName} deleted from library`, "success");
+    UI.showAlert(`Project ${el} deleted from library`, "success");
   };
 
   // ADD TASK TO PROJECT
@@ -132,34 +132,31 @@ class UI {
     form.appendChild(buttonDiv);
 
     // // DISPLAY FORM
-    // if (display.childElementCount === 0) {
     display.appendChild(formDiv);
-    // }
   };
 
   // DISPLAY PROJECT CONTENTS/TASKS WHEN CLICKED
   static projectShow = (e) => {
-    // ADD YELLOW MARKER FOR CURRENT PROJECT
-    let projects = navbar.children;
-    for (let project of projects) {
-      project.classList.remove("active");
-    }
-    e.target.classList.add("active");
-
     // CLEAR DISPLAY
     display.innerText = "";
-    display.setAttribute("display", "flex");
-    display.setAttribute("flex-flow", "row");
-    display.setAttribute("gap", "1rem");
+    display.style.display = "flex";
+    display.style.gap = "1rem";
 
     // PROJECT SELECTED THROUGH CLICK EVENT
     const selectedProject = ProjectStore.store.filter(
       (project) => project.name === e.target.textContent
     );
+    let selectedProjectName = selectedProject[0].name;
 
     // TASKS ON SELECTED PROJECT
     const tasksArr = selectedProject[0].tasks;
     console.log(tasksArr);
+
+    // CREATE H2 THAT DISPLAYS SELECTED PROJECT NAME
+    const projectNameDisplay = document.createElement("h2");
+    projectNameDisplay.classList.add("projectNameDisplay");
+    projectNameDisplay.innerText = `Tasks for project ${selectedProjectName}`;
+    mainSection.prepend(projectNameDisplay);
 
     // CREATE AND DISPLAY EACH TASK ON SCREEN
     tasksArr.forEach((task) => {
@@ -181,6 +178,10 @@ class UI {
       taskDescription.innerText = `Description : ${task.description}`;
       dueDate.innerText = `Due Date : ${task.date}`;
 
+      if (!mainSection.child === projectNameDisplay) {
+        mainSection.prepend(projectNameDisplay);
+        alert("NO");
+      }
       display.appendChild(projectCard);
     });
   };
