@@ -181,12 +181,31 @@ class UI {
       buttonsDiv.classList.add("buttonsDiv");
       const editButton = document.createElement("button");
       editButton.classList.add("editButton");
-      const checkMarkDiv = document.createElement("div");
-      checkMarkDiv.classList.add("checkMarkDiv");
+      editButton.innerText = "✍️";
+      editButton.addEventListener("click", () => {
+        //
+      });
+      const checkMark = document.createElement("button");
+      checkMark.innerText = "✅";
+      checkMark.addEventListener("click", () => {
+        checkMark.parentElement.parentElement.classList.toggle("completed");
+      });
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "🗑️";
+      deleteButton.addEventListener("click", () => {
+        const task = deleteButton.parentElement.parentElement;
+        display.removeChild(task);
+        UI.showAlert("Task deleted", "succ");
+        console.log(selectedProject[0]. );
+      });
 
       projectCard.appendChild(taskName);
       projectCard.appendChild(taskDescription);
       projectCard.appendChild(dueDate);
+      buttonsDiv.appendChild(editButton);
+      buttonsDiv.appendChild(checkMark);
+      buttonsDiv.appendChild(deleteButton);
+      projectCard.appendChild(buttonsDiv);
 
       // SET TASK DETAILS
       taskName.innerText = `Task : ${task.name}`;

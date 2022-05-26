@@ -6,7 +6,8 @@
     font-family: 'Montserrat', sans-serif;
 } 
 button{
-    box-shadow: 2px 2px 2px black
+    box-shadow: 2px 2px 2px black;
+    border: none;
 }
 button:hover{
     cursor: pointer;
@@ -255,11 +256,14 @@ h2 > span{
     display: flex;
     width: 70%;
     justify-content: center;
-    /* margin-bottom: 50px; */
-    /* margin-top: -20px; */
     font-size: 1.3rem;
     font-weight: 600;
     border-radius: 10px;
+}
+.buttonsDiv{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
 }
 
 /* ---------------- END OF SECTION ------------------------- */
