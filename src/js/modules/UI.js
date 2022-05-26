@@ -137,10 +137,16 @@ class UI {
 
   // DISPLAY PROJECT CONTENTS/TASKS WHEN CLICKED
   static projectShow = (e) => {
+    mainSection.textContent = "";
+    mainSection.appendChild(display);
     // CLEAR DISPLAY
     display.innerText = "";
     display.style.display = "flex";
     display.style.gap = "1rem";
+    display.style.flexFlow = "column nowrap";
+    display.style.overflow = "auto";
+    display.style.width = "inherit";
+    display.style.alignItems = "center";
 
     // PROJECT SELECTED THROUGH CLICK EVENT
     const selectedProject = ProjectStore.store.filter(
@@ -155,7 +161,7 @@ class UI {
     // CREATE H2 THAT DISPLAYS SELECTED PROJECT NAME
     const projectNameDisplay = document.createElement("h2");
     projectNameDisplay.classList.add("projectNameDisplay");
-    projectNameDisplay.innerText = `Tasks for project ${selectedProjectName}`;
+    projectNameDisplay.innerHTML = `Tasks for project <span>${selectedProjectName}</span>`;
     mainSection.prepend(projectNameDisplay);
 
     // CREATE AND DISPLAY EACH TASK ON SCREEN
@@ -169,6 +175,15 @@ class UI {
       taskDescription.classList.add("projectCardDescription");
       const dueDate = document.createElement("p");
       dueDate.classList.add("projectCardDate");
+
+      //CREATE INTERFACE FOR PROJECT CARD
+      const buttonsDiv = document.createElement("div");
+      buttonsDiv.classList.add("buttonsDiv");
+      const editButton = document.createElement("button");
+      editButton.classList.add("editButton");
+      const checkMarkDiv = document.createElement("div");
+      checkMarkDiv.classList.add("checkMarkDiv");
+
       projectCard.appendChild(taskName);
       projectCard.appendChild(taskDescription);
       projectCard.appendChild(dueDate);
@@ -178,10 +193,6 @@ class UI {
       taskDescription.innerText = `Description : ${task.description}`;
       dueDate.innerText = `Due Date : ${task.date}`;
 
-      if (!mainSection.child === projectNameDisplay) {
-        mainSection.prepend(projectNameDisplay);
-        alert("NO");
-      }
       display.appendChild(projectCard);
     });
   };
