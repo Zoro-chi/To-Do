@@ -39,7 +39,9 @@ class Project {
   }
 
   deleteTask(taskName) {
-    this.tasks.filter((task) => task.name !== taskName);
+    // this.tasks.filter((task) => task.name !== taskName);
+    let index = this.tasks.indexOf(taskName);
+    this.tasks.splice(index, 1);
   }
 }
 Project.prototype.id = "";

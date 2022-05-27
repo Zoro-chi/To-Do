@@ -192,11 +192,15 @@ class UI {
       });
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";
-      deleteButton.addEventListener("click", () => {
-        const task = deleteButton.parentElement.parentElement;
-        display.removeChild(task);
-        UI.showAlert("Task deleted", "succ");
-        console.log(selectedProject[0]. );
+      deleteButton.addEventListener("click", (e) => {
+        const taskEl = deleteButton.parentElement.parentElement;
+        display.removeChild(taskEl);
+        UI.showAlert(
+          `${task.name} deleted from ${selectedProject[0].name}`,
+          "succ"
+        );
+        selectedProject[0].deleteTask(task.name);
+        console.log(selectedProject[0].tasks);
       });
 
       projectCard.appendChild(taskName);
@@ -236,7 +240,7 @@ class UI {
     // REMOVE FORM FROM DISPLAY
     setTimeout(() => {
       display.innerText = "";
-    }, 3000);
+    }, 1500);
   };
 
   // SHOW ALERTS
@@ -258,7 +262,7 @@ class UI {
 
     setTimeout(() => {
       mainSection.removeChild(alertDiv);
-    }, 3000);
+    }, 1500);
   };
 }
 
