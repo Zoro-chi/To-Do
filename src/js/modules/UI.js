@@ -11,6 +11,7 @@ const mainSection = document.querySelector(".main-section");
 const navbar = document.querySelector(".navbar");
 
 let newProjectName;
+const completedList = [];
 
 class UI {
   // ADD PROJECT TO PROJECT LIST
@@ -24,42 +25,46 @@ class UI {
     projectNameDiv.classList.toggle("show");
 
     newProjectName = document.querySelector("#project-name").value;
-    let nameInput = document.querySelector("#project-name");
-    const newProjectObject = new Project(newProjectName, newProjectName);
-    console.log(newProjectObject);
-    ProjectStore.addToLibrary(newProjectObject);
+    if (newProjectName.length <= 0) {
+      UI.showAlert("Please enter a project name", "err");
+    } else {
+      let nameInput = document.querySelector("#project-name");
+      const newProjectObject = new Project(newProjectName, newProjectName);
+      console.log(newProjectObject);
+      ProjectStore.addToLibrary(newProjectObject);
 
-    const newProjectDiv = document.createElement("div");
-    newProjectDiv.classList.add("newProjectDiv");
-    const newProject = document.createElement("li");
-    newProject.classList.add("createdLi");
-    const newProjectNameSpan = document.createElement("span");
-    newProjectNameSpan.classList.add("projectNameSpan");
-    newProjectNameSpan.addEventListener("click", UI.projectShow);
-    newProjectNameSpan.innerText = newProjectName;
-    nameInput.value = "";
-    newProject.appendChild(newProjectNameSpan);
-    newProjectDiv.appendChild(newProject);
+      const newProjectDiv = document.createElement("div");
+      newProjectDiv.classList.add("newProjectDiv");
+      const newProject = document.createElement("li");
+      newProject.classList.add("createdLi");
+      const newProjectNameSpan = document.createElement("span");
+      newProjectNameSpan.classList.add("projectNameSpan");
+      newProjectNameSpan.addEventListener("click", UI.projectShow);
+      newProjectNameSpan.innerText = newProjectName;
+      nameInput.value = "";
+      newProject.appendChild(newProjectNameSpan);
+      newProjectDiv.appendChild(newProject);
 
-    // CREATE A DELETE PROJECT BUTTON
-    const deleteProjectButton = document.createElement("button");
-    deleteProjectButton.addEventListener("click", UI.deleteProject);
-    deleteProjectButton.classList.add("dltButton");
-    const deleteProjectIcon = document.createElement("i");
-    deleteProjectIcon.className = "fa-solid fa-trash";
-    deleteProjectButton.appendChild(deleteProjectIcon);
-    newProject.append(deleteProjectButton);
+      // CREATE A DELETE PROJECT BUTTON
+      const deleteProjectButton = document.createElement("button");
+      deleteProjectButton.addEventListener("click", UI.deleteProject);
+      deleteProjectButton.classList.add("dltButton");
+      const deleteProjectIcon = document.createElement("i");
+      deleteProjectIcon.className = "fa-solid fa-trash";
+      deleteProjectButton.appendChild(deleteProjectIcon);
+      newProject.append(deleteProjectButton);
 
-    // CREATE ADD TASK TO PROJECT BUTTON
-    const addTaskToProject = document.createElement("button");
-    addTaskToProject.addEventListener("click", UI.addTask);
-    addTaskToProject.classList.add("addTaskButton");
-    const addTaskIcon = document.createElement("i");
-    addTaskIcon.className = "fa-solid fa-plus";
-    addTaskToProject.appendChild(addTaskIcon);
-    newProject.append(addTaskToProject);
-    const projectDisplay = document.querySelector(".navbar");
-    projectDisplay.appendChild(newProjectDiv);
+      // CREATE ADD TASK TO PROJECT BUTTON
+      const addTaskToProject = document.createElement("button");
+      addTaskToProject.addEventListener("click", UI.addTask);
+      addTaskToProject.classList.add("addTaskButton");
+      const addTaskIcon = document.createElement("i");
+      addTaskIcon.className = "fa-solid fa-plus";
+      addTaskToProject.appendChild(addTaskIcon);
+      newProject.append(addTaskToProject);
+      const projectDisplay = document.querySelector(".navbar");
+      projectDisplay.appendChild(newProjectDiv);
+    }
   };
 
   // DELETE PROJECT
@@ -67,6 +72,8 @@ class UI {
     e.target.parentElement.remove();
     const el = e.target.parentElement.textContent;
     ProjectStore.deleteFromLibrary(el);
+    display.innerText = "";
+    document.querySelector(".main-section").firstChild.innerText = "";
     UI.showAlert(`Project ${el} deleted from library`, "success");
   };
 
@@ -182,16 +189,31 @@ class UI {
       const editButton = document.createElement("button");
       editButton.classList.add("editButton");
       editButton.innerText = "✍️";
+      editButton.style.backgroundColor = "darkgrey";
       editButton.addEventListener("click", () => {
         //
       });
       const checkMark = document.createElement("button");
       checkMark.innerText = "✅";
+      checkMark.style.backgroundColor = "darkgrey";
       checkMark.addEventListener("click", () => {
-        checkMark.parentElement.parentElement.classList.toggle("completed");
+        if (
+          checkMark.parentElement.parentElement.classList.contains("completed")
+        ) {
+          checkMark.parentElement.parentElement.classList.toggle("completed");
+          UI.showAlert(`${task.name} removed from completed list`);
+          completedList.splice(completedList.indexOf(task), 1);
+          console.log(completedList);
+        } else {
+          checkMark.parentElement.parentElement.classList.toggle("completed");
+          UI.showAlert(`${task.name} added to completed list`);
+          completedList.push(task);
+          console.log(completedList);
+        }
       });
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";
+      deleteButton.style.backgroundColor = "darkgrey";
       deleteButton.addEventListener("click", (e) => {
         const taskEl = deleteButton.parentElement.parentElement;
         display.removeChild(taskEl);
@@ -228,19 +250,27 @@ class UI {
     const date = document.querySelector(".dueDate").value;
     const myId = newProjectName;
 
-    // CREATE TASK OBJECT
-    const newTaskObject = new Tasks(myId, taskName, taskDescription, date);
-    console.log(newTaskObject);
+    if (
+      taskName.length <= 0 ||
+      taskDescription.length <= 0 ||
+      date.length <= 0
+    ) {
+      UI.showAlert("Please fill all fields", "err");
+    } else {
+      // CREATE TASK OBJECT
+      const newTaskObject = new Tasks(myId, taskName, taskDescription, date);
+      console.log(newTaskObject);
 
-    // ADD TASK TO CORESSPONDING PROJECT
-    const myProject = ProjectStore.findProject(myId)[0].tasks;
-    myProject.push(newTaskObject);
-    UI.showAlert(`Task ${taskName} added to ${newProjectName}`, "success");
+      // ADD TASK TO CORESSPONDING PROJECT
+      const myProject = ProjectStore.findProject(myId)[0].tasks;
+      myProject.push(newTaskObject);
+      UI.showAlert(`Task ${taskName} added to ${newProjectName}`, "success");
 
-    // REMOVE FORM FROM DISPLAY
-    setTimeout(() => {
-      display.innerText = "";
-    }, 1500);
+      // REMOVE FORM FROM DISPLAY
+      setTimeout(() => {
+        display.innerText = "";
+      }, 1500);
+    }
   };
 
   // SHOW ALERTS
@@ -254,6 +284,7 @@ class UI {
 
     if (status === "err") {
       alertDiv.style.backgroundColor = "#f03f3f";
+      alertDiv.style.color = "white";
     } else {
       alertDiv.style.backgroundColor = "#80e380";
     }

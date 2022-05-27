@@ -64,7 +64,7 @@ button:active{
 }
 .aside .projects-container{
     width: 25vw;
-    background-color: rgb(229 206 206 / 40%);
+    background-color: antiquewhite;
     padding: 1rem;
     display: flex;
     flex-flow: column;
@@ -152,21 +152,36 @@ i{
 }
 .active,
 .projectNameSpan:hover{
-    background-color: rgb(195 195 4);
+    background-color: rgb(211, 211, 12);
     cursor: pointer;
 }
 .projectCard{
-    border: 2px solid black;
+    box-shadow: -1px -1px 14px 1px;
     display: flex;
     flex-flow: column;
     padding: 0.5rem;
     gap: 2rem;
     width: fit-content;
-    
+    background-color: antiquewhite;
+    max-width: 35rem;
 }
-.projectCardName,
-.projectCardDescription,
+.projectCard.completed{
+    background-color: lightgreen;
+}
+.projectCardName{
+    color: rgb(195 195 4);
+    border-bottom: 1px solid black;
+}
+.projectCardDescription{
+    font-family: cursive;
+    font-size: 1.3rem;
+    border-bottom: 1px solid black;
+}
 .projectCardDate{
+    font-size: 1.25rem;
+    font-family: ui-monospace;
+    font-weight: 900;
+    color: tomato;
     border-bottom: 1px solid black;
 }
 
@@ -264,6 +279,10 @@ h2 > span{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
+}
+.buttonsDiv > button{
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 /* ---------------- END OF SECTION ------------------------- */
