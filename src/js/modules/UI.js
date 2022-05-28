@@ -9,11 +9,48 @@ const display = document.querySelector(".display");
 const registerButton = document.querySelector(".project-button");
 const mainSection = document.querySelector(".main-section");
 const navbar = document.querySelector(".navbar");
+const filter = document.querySelector("#filter");
 
 let newProjectName;
 const completedList = [];
 
 class UI {
+  // DISPLAY FILTER OPTION
+  static filter = () => {
+    let selectedFilter = filter.options[filter.selectedIndex].value;
+    if (selectedFilter === "none") {
+      console.log("none");
+      return;
+    } else if (selectedFilter === "completed") {
+      display.innerText = "";
+      mainSection.firstChild.innerText = "";
+      // DISPLAY COMPLETED PROJECTS
+      console.log(completedList);
+      completedList.forEach((task) => {
+        // CREATE A CARD FOR EACH TASK
+        const projectCard = document.createElement("div");
+        projectCard.classList.add("projectCard");
+        projectCard.style.backgroundColor = "lightgreen";
+        const taskName = document.createElement("h2");
+        taskName.classList.add("projectCardName");
+        const taskDescription = document.createElement("p");
+        taskDescription.classList.add("projectCardDescription");
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("projectCardDate");
+
+        // SET TASK DETAILS
+        taskName.innerText = `Task : ${task.name}`;
+        taskDescription.innerText = `Description : ${task.description}`;
+        dueDate.innerText = `Due Date : ${task.date}`;
+
+        projectCard.appendChild(taskName);
+        projectCard.appendChild(taskDescription);
+        projectCard.appendChild(dueDate);
+        display.appendChild(projectCard);
+      });
+    }
+  };
+
   // ADD PROJECT TO PROJECT LIST
   static addProject = () => {
     // SELECT PROJECT FORM INPUT & ADD 'SHOW' CLASS (VISIBILITY)
@@ -200,14 +237,19 @@ class UI {
         if (
           checkMark.parentElement.parentElement.classList.contains("completed")
         ) {
-          checkMark.parentElement.parentElement.classList.toggle("completed");
+          checkMark.parentElement.parentElement.classList.remove("completed");
           UI.showAlert(`${task.name} removed from completed list`);
           completedList.splice(completedList.indexOf(task), 1);
           console.log(completedList);
         } else {
-          checkMark.parentElement.parentElement.classList.toggle("completed");
-          UI.showAlert(`${task.name} added to completed list`);
-          completedList.push(task);
+          checkMark.parentElement.parentElement.classList.add("completed");
+          if (completedList.includes(task)) {
+            UI.showAlert(`${task.name} already added to completed list`, "err");
+            return;
+          } else {
+            UI.showAlert(`${task.name} added to completed list`);
+            completedList.push(task);
+          }
           console.log(completedList);
         }
       });
@@ -300,5 +342,6 @@ class UI {
 // EVENT LISTENERS
 addNewProject.addEventListener("click", UI.addProject);
 registerButton.addEventListener("click", UI.createProject);
+filter.addEventListener("change", UI.filter);
 
 export { UI };
