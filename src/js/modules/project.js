@@ -1,3 +1,5 @@
+import { ProjectStore } from "./projectLibrary.js";
+
 class Project {
   constructor(name, myId) {
     this.name = name;
@@ -39,7 +41,6 @@ class Project {
   }
 
   deleteTask(taskName) {
-    // this.tasks.filter((task) => task.name !== taskName);
     let index = this.tasks.indexOf(taskName);
     this.tasks.splice(index, 1);
   }

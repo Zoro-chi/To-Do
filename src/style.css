@@ -301,7 +301,16 @@ h2 > span{
     height: 1.5rem;
     width: 1.5rem;
 }
-
+.editButton,
+.completedButton,
+.trashButton{
+    background-color: darkgray;
+}
+.editButton:hover,
+.completedButton:hover,
+.trashButton:hover{
+    background-color: rgb(195 195 4);
+}
 /* ---------------- END OF SECTION ------------------------- */
 
 /* -------------- FOOTER ---------------------------------- */

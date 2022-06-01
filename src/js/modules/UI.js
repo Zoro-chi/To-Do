@@ -12,7 +12,7 @@ const navbar = document.querySelector(".navbar");
 const filter = document.querySelector("#filter");
 
 let newProjectName;
-const completedList = [];
+const completedList = ProjectStore.completed;
 let selectedProjectName;
 
 class UI {
@@ -20,7 +20,6 @@ class UI {
   static filter = () => {
     let selectedFilter = filter.options[filter.selectedIndex].value;
     if (selectedFilter === "none") {
-      console.log("none");
       return;
     } else if (selectedFilter === "completed") {
       display.innerText = "";
@@ -232,13 +231,12 @@ class UI {
       const editButton = document.createElement("button");
       editButton.classList.add("editButton");
       editButton.innerText = "✍️";
-      editButton.style.backgroundColor = "darkgrey";
       editButton.addEventListener("click", () => {
         //
       });
       const checkMark = document.createElement("button");
+      checkMark.classList.add("completedButton");
       checkMark.innerText = "✅";
-      checkMark.style.backgroundColor = "darkgrey";
       checkMark.addEventListener("click", () => {
         if (
           checkMark.parentElement.parentElement.classList.contains("completed")
@@ -256,12 +254,11 @@ class UI {
             UI.showAlert(`${task.name} added to completed list`);
             completedList.push(task);
           }
-          console.log(completedList);
         }
       });
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";
-      deleteButton.style.backgroundColor = "darkgrey";
+      deleteButton.classList.add("trashButton");
       deleteButton.addEventListener("click", (e) => {
         const taskEl = deleteButton.parentElement.parentElement;
         display.removeChild(taskEl);
@@ -270,6 +267,11 @@ class UI {
           "succ"
         );
         selectedProject[0].deleteTask(task.name);
+        let taskArr = JSON.parse(localStorage.getItem("projects")).filter(
+          (project) => project.name === selectedProject[0].name
+        );
+        let taskToDelete = taskArr.filter((task) => task.name === task.name);
+        localStorage.removeItem(taskToDelete);
         console.log(selectedProject[0].tasks);
       });
 
@@ -312,6 +314,8 @@ class UI {
       // ADD TASK TO CORESSPONDING PROJECT
       const myProject = ProjectStore.findProject(myId)[0].tasks;
       myProject.push(newTaskObject);
+      localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
+
       UI.showAlert(
         `Task ${taskName} added to ${selectedProjectName}`,
         "success"
