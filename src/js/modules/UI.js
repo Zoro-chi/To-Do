@@ -13,6 +13,7 @@ const filter = document.querySelector("#filter");
 
 let newProjectName;
 const completedList = [];
+let selectedProjectName;
 
 class UI {
   // DISPLAY FILTER OPTION
@@ -115,7 +116,12 @@ class UI {
   };
 
   // ADD TASK TO PROJECT
-  static addTask = () => {
+  static addTask = (e) => {
+    const selectedProject = ProjectStore.store.filter(
+      (project) => project.name === e.target.parentElement.textContent
+    );
+    selectedProjectName = selectedProject[0].name;
+
     // CLEAR DISPLAY
     display.innerText = "";
     // CREATE A FORM TO COLLECT TASK DETAILS
@@ -196,7 +202,7 @@ class UI {
     const selectedProject = ProjectStore.store.filter(
       (project) => project.name === e.target.textContent
     );
-    let selectedProjectName = selectedProject[0].name;
+    selectedProjectName = selectedProject[0].name;
 
     // TASKS ON SELECTED PROJECT
     const tasksArr = selectedProject[0].tasks;
@@ -290,7 +296,7 @@ class UI {
     const taskName = document.querySelector(".taskName").value;
     const taskDescription = document.querySelector(".taskDescription").value;
     const date = document.querySelector(".dueDate").value;
-    const myId = newProjectName;
+    const myId = selectedProjectName;
 
     if (
       taskName.length <= 0 ||
@@ -306,12 +312,15 @@ class UI {
       // ADD TASK TO CORESSPONDING PROJECT
       const myProject = ProjectStore.findProject(myId)[0].tasks;
       myProject.push(newTaskObject);
-      UI.showAlert(`Task ${taskName} added to ${newProjectName}`, "success");
+      UI.showAlert(
+        `Task ${taskName} added to ${selectedProjectName}`,
+        "success"
+      );
 
       // REMOVE FORM FROM DISPLAY
       setTimeout(() => {
         display.innerText = "";
-      }, 1500);
+      }, 2000);
     }
   };
 
