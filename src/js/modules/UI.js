@@ -266,12 +266,9 @@ class UI {
           "succ"
         );
         selectedProject[0].deleteTask(task.name);
-        let taskArr = JSON.parse(localStorage.getItem("projects")).filter(
-          (project) => project.name === selectedProject[0].name
-        );
-        let taskToDelete = taskArr.filter((task) => task.name === task.name);
-        localStorage.removeItem(taskToDelete);
-        
+        // let taskArr = JSON.parse(localStorage.getItem("projects")).filter(
+        //   (project) => project.name === selectedProject[0].name
+        // );
       });
 
       projectCard.appendChild(taskName);

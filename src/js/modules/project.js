@@ -49,7 +49,7 @@ class Project {
     let index = project.findIndex((obj) => obj.name === taskName);
     if (index > -1) {
       project.splice(index, 1);
-      localStorage.setItem("projects", JSON.stringify(project));
+      localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
     }
   }
 }
