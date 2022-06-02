@@ -41,8 +41,16 @@ class Project {
   }
 
   deleteTask(taskName) {
-    let index = this.tasks.indexOf(taskName);
-    this.tasks.splice(index, 1);
+    let name = this.getName();
+    let project = ProjectStore.store.filter(
+      (project) => project.name === name
+    )[0].tasks;
+
+    let index = project.findIndex((obj) => obj.name === taskName);
+    if (index > -1) {
+      project.splice(index, 1);
+      localStorage.setItem("projects", JSON.stringify(project));
+    }
   }
 }
 Project.prototype.id = "";

@@ -205,7 +205,6 @@ class UI {
 
     // TASKS ON SELECTED PROJECT
     const tasksArr = selectedProject[0].tasks;
-    console.log(tasksArr);
 
     // CREATE H2 THAT DISPLAYS SELECTED PROJECT NAME
     const projectNameDisplay = document.createElement("h2");
@@ -272,7 +271,7 @@ class UI {
         );
         let taskToDelete = taskArr.filter((task) => task.name === task.name);
         localStorage.removeItem(taskToDelete);
-        console.log(selectedProject[0].tasks);
+        
       });
 
       projectCard.appendChild(taskName);

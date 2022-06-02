@@ -5,9 +5,18 @@ class ProjectStore {
   };
 
   static deleteFromLibrary = (projectName) => {
-    const index = this.store.indexOf(projectName);
-    this.store.splice(index, 1);
-    localStorage.removeItem(projectName);
+    // this.store.splice(this.store.indexOf(projectName), 1);
+    let project = this.store.filter(
+      (project) => project.name === projectName
+    )[0];
+    console.log(project);
+    let index = this.store.findIndex((obj) => obj === project);
+    console.log(index);
+    if (index > -1) {
+      this.store.splice(index, 1);
+      console.log(this.store);
+      localStorage.setItem("projects", JSON.stringify(this.store));
+    }
   };
 
   static findProject = (myId) => {
