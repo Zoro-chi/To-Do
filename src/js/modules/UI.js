@@ -16,6 +16,48 @@ const completedList = ProjectStore.completed;
 let selectedProjectName;
 
 class UI {
+  // DISPLAY SAVED PROJECTS ON LOAD
+  static loadSavedProjects = () => {
+    const savedProjects = ProjectStore.store;
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log(savedProjects);
+      savedProjects.forEach((project) => {
+        let nameInput = document.querySelector("#project-name");
+        const newProjectDiv = document.createElement("div");
+        newProjectDiv.classList.add("newProjectDiv");
+        const newProject = document.createElement("li");
+        newProject.classList.add("createdLi");
+        const newProjectNameSpan = document.createElement("span");
+        newProjectNameSpan.classList.add("projectNameSpan");
+        newProjectNameSpan.addEventListener("click", UI.projectShow);
+        newProjectNameSpan.innerText = project.name;
+        nameInput.value = "";
+        newProject.appendChild(newProjectNameSpan);
+        newProjectDiv.appendChild(newProject);
+
+        // CREATE A DELETE PROJECT BUTTON
+        const deleteProjectButton = document.createElement("button");
+        deleteProjectButton.addEventListener("click", UI.deleteProject);
+        deleteProjectButton.classList.add("dltButton");
+        const deleteProjectIcon = document.createElement("i");
+        deleteProjectIcon.className = "fa-solid fa-trash";
+        deleteProjectButton.appendChild(deleteProjectIcon);
+        newProject.append(deleteProjectButton);
+
+        // CREATE ADD TASK TO PROJECT BUTTON
+        const addTaskToProject = document.createElement("button");
+        addTaskToProject.addEventListener("click", UI.addTask);
+        addTaskToProject.classList.add("addTaskButton");
+        const addTaskIcon = document.createElement("i");
+        addTaskIcon.className = "fa-solid fa-plus";
+        addTaskToProject.appendChild(addTaskIcon);
+        newProject.append(addTaskToProject);
+        const projectDisplay = document.querySelector(".navbar");
+        projectDisplay.appendChild(newProjectDiv);
+      });
+    });
+  };
+
   // DISPLAY FILTER OPTION
   static filter = () => {
     let selectedFilter = filter.options[filter.selectedIndex].value;
@@ -65,43 +107,47 @@ class UI {
     if (newProjectName.length <= 0) {
       UI.showAlert("Please enter a project name", "err");
     } else {
-      let nameInput = document.querySelector("#project-name");
       const newProjectObject = new Project(newProjectName, newProjectName);
       console.log(newProjectObject);
       ProjectStore.addToLibrary(newProjectObject);
-
-      const newProjectDiv = document.createElement("div");
-      newProjectDiv.classList.add("newProjectDiv");
-      const newProject = document.createElement("li");
-      newProject.classList.add("createdLi");
-      const newProjectNameSpan = document.createElement("span");
-      newProjectNameSpan.classList.add("projectNameSpan");
-      newProjectNameSpan.addEventListener("click", UI.projectShow);
-      newProjectNameSpan.innerText = newProjectName;
-      nameInput.value = "";
-      newProject.appendChild(newProjectNameSpan);
-      newProjectDiv.appendChild(newProject);
-
-      // CREATE A DELETE PROJECT BUTTON
-      const deleteProjectButton = document.createElement("button");
-      deleteProjectButton.addEventListener("click", UI.deleteProject);
-      deleteProjectButton.classList.add("dltButton");
-      const deleteProjectIcon = document.createElement("i");
-      deleteProjectIcon.className = "fa-solid fa-trash";
-      deleteProjectButton.appendChild(deleteProjectIcon);
-      newProject.append(deleteProjectButton);
-
-      // CREATE ADD TASK TO PROJECT BUTTON
-      const addTaskToProject = document.createElement("button");
-      addTaskToProject.addEventListener("click", UI.addTask);
-      addTaskToProject.classList.add("addTaskButton");
-      const addTaskIcon = document.createElement("i");
-      addTaskIcon.className = "fa-solid fa-plus";
-      addTaskToProject.appendChild(addTaskIcon);
-      newProject.append(addTaskToProject);
-      const projectDisplay = document.querySelector(".navbar");
-      projectDisplay.appendChild(newProjectDiv);
+      UI.createLi();
     }
+  };
+
+  // CREATE EACH PROJECT LI ELEMENT
+  static createLi = () => {
+    let nameInput = document.querySelector("#project-name");
+    const newProjectDiv = document.createElement("div");
+    newProjectDiv.classList.add("newProjectDiv");
+    const newProject = document.createElement("li");
+    newProject.classList.add("createdLi");
+    const newProjectNameSpan = document.createElement("span");
+    newProjectNameSpan.classList.add("projectNameSpan");
+    newProjectNameSpan.addEventListener("click", UI.projectShow);
+    newProjectNameSpan.innerText = newProjectName;
+    nameInput.value = "";
+    newProject.appendChild(newProjectNameSpan);
+    newProjectDiv.appendChild(newProject);
+
+    // CREATE A DELETE PROJECT BUTTON
+    const deleteProjectButton = document.createElement("button");
+    deleteProjectButton.addEventListener("click", UI.deleteProject);
+    deleteProjectButton.classList.add("dltButton");
+    const deleteProjectIcon = document.createElement("i");
+    deleteProjectIcon.className = "fa-solid fa-trash";
+    deleteProjectButton.appendChild(deleteProjectIcon);
+    newProject.append(deleteProjectButton);
+
+    // CREATE ADD TASK TO PROJECT BUTTON
+    const addTaskToProject = document.createElement("button");
+    addTaskToProject.addEventListener("click", UI.addTask);
+    addTaskToProject.classList.add("addTaskButton");
+    const addTaskIcon = document.createElement("i");
+    addTaskIcon.className = "fa-solid fa-plus";
+    addTaskToProject.appendChild(addTaskIcon);
+    newProject.append(addTaskToProject);
+    const projectDisplay = document.querySelector(".navbar");
+    projectDisplay.appendChild(newProjectDiv);
   };
 
   // DELETE PROJECT
@@ -237,21 +283,23 @@ class UI {
       checkMark.classList.add("completedButton");
       checkMark.innerText = "✅";
       checkMark.addEventListener("click", () => {
+        // CHECK IF TASK HAS COMPLETED CLASS || ADD COMPLETED CLASS TO TASK
         if (
           checkMark.parentElement.parentElement.classList.contains("completed")
         ) {
           checkMark.parentElement.parentElement.classList.remove("completed");
           UI.showAlert(`${task.name} removed from completed list`);
           completedList.splice(completedList.indexOf(task), 1);
+          localStorage.setItem("completed", JSON.stringify(completedList));
           console.log(completedList);
         } else {
           checkMark.parentElement.parentElement.classList.add("completed");
           if (completedList.includes(task)) {
             UI.showAlert(`${task.name} already added to completed list`, "err");
-            return;
           } else {
             UI.showAlert(`${task.name} added to completed list`);
             completedList.push(task);
+            localStorage.setItem("completed", JSON.stringify(completedList));
           }
         }
       });
@@ -266,9 +314,6 @@ class UI {
           "succ"
         );
         selectedProject[0].deleteTask(task.name);
-        // let taskArr = JSON.parse(localStorage.getItem("projects")).filter(
-        //   (project) => project.name === selectedProject[0].name
-        // );
       });
 
       projectCard.appendChild(taskName);
@@ -347,6 +392,8 @@ class UI {
     }, 1500);
   };
 }
+
+UI.loadSavedProjects();
 
 // EVENT LISTENERS
 addNewProject.addEventListener("click", UI.addProject);

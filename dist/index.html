@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/style.css">
-    <script src="https://kit.fontawesome.com/6dbed7fcf7.js" crossorigin="anonymous"></script>
-    <title> To-Do's </title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <script
+      src="https://kit.fontawesome.com/6dbed7fcf7.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>To-Do's</title>
+  </head>
+  <body>
     <div class="header-container">
-        <header class="header">
-            <img class="logo" src="../src/images/logo.png" alt="logo" srcset=""> <h1>To-Do</h1>
-
-        </header>
+      <header class="header">
+        <img class="logo" src="../src/images/logo.png" alt="logo" srcset="" />
+        <h1>To-Do</h1>
+      </header>
     </div>
 
     <div class="main-container">
+      <div class="aside-container">
+        <aside class="aside">
+          <div class="projects-container">
+            <h2>Projects</h2>
+            <div class="filterDiv">
+              <label for="filter"> Filter:</label>
+              <select name="filter" id="filter">
+                <option value="none">None</option>
+                <option value="all">All</option>
+                <option value="completed">Completed</option>
+                <option value="today">Today</option>
+                <option value="thisWeek">This week</option>
+              </select>
+            </div>
+            <div class="addNewProject">
+              <img
+                class="add-icon"
+                src="../src/images/addIcon.png"
+                alt="add icon"
+              />
+              <p>Add project</p>
+            </div>
 
-        <div class="aside-container">
-            <aside class="aside">
-                <div class="projects-container">
-                    <h2>Projects</h2>
-                    <div class="filterDiv">
-                        <label for="filter"> Filter:</label>
-                        <select name="filter" id="filter">
-                            <option value="none"> None </option>
-                            <option value="all"> All </option>
-                            <option value="completed"> Completed </option>
-                            <option value="today"> Today </option>
-                            <option value="thisWeek"> This week </option>
-                            <option value="deleted"> Deleted </option>
-                        </select>
-                    </div>
-                    <div class="addNewProject"> <img class="add-icon" src="../src/images/addIcon.png" alt="add icon"> <p> Add project </p></div>
+            <div class="project-name">
+              <form class="project-form">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  id="project-name"
+                  name="project-name"
+                />
+                <button class="project-button" type="button">Register</button>
+              </form>
+            </div>
+            <ul class="navbar"></ul>
+          </div>
+        </aside>
+      </div>
 
-                    <div class="project-name">
-                        <form class="project-form">
-                            <input type="text" placeholder="Name" id="project-name" name="project-name">
-                            <button class="project-button" type="button"> Register </button>
-                        </form>
-                    </div>
-                    <ul class="navbar"> 
-                        
-                    </ul>
-                </div>
-            </aside>
-        </div>
-
-        <div class="main-section-container">
-            <section class="main-section">
-                <div class="display">
-
-                </div>
-                
-            </section>
-        </div>
-
+      <div class="main-section-container">
+        <section class="main-section">
+          <div class="display"></div>
+        </section>
+      </div>
     </div>
 
-
     <div class="footer-container">
-        <footer class="footer">
-            <h3>Made with ❤️ from Gidi</h3>
-        </footer>
+      <footer class="footer">
+        <h3>Made with ❤️ from Gidi</h3>
+      </footer>
     </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

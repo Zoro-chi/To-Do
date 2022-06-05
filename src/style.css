@@ -1,328 +1,326 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Pacifico&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-} 
-button{
-    box-shadow: 2px 2px 2px black;
-    border: none;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Pacifico&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
-button:hover{
-    cursor: pointer;
+button {
+  box-shadow: 2px 2px 2px black;
+  border: none;
 }
-button:active{
-    transform: translateY(1px);
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  transform: translateY(1px);
 }
 /* ------------------------HEADER------------------------- */
-.logo{
-    height: 90px;
-    width: 90px;
+.logo {
+  height: 90px;
+  width: 90px;
 }
-.header{
-    display: flex;
-    height: 15vh;
-    gap: 2rem;
-    background-color: lemonchiffon;
-    align-items: center;
-    justify-content: end;
-    padding-right: 2rem;
+.header {
+  display: flex;
+  height: 15vh;
+  gap: 2rem;
+  background-color: lemonchiffon;
+  align-items: center;
+  justify-content: end;
+  padding-right: 2rem;
 }
-.header h1{
-    font-size: 5rem;
-    font-weight: 100;
+.header h1 {
+  font-size: 5rem;
+  font-weight: 100;
 }
 /* --------------END OF HEADER------------------------------ */
 
 /* ---------------- MAIN CONTAINER ----------------------------- */
-.main-container{
-    height: 77vh;
-    display: flex;
-    flex-flow: row nowrap;
-    padding-left: 30px;
-    padding-top: 30px;
-    gap: 0.5rem;
-    background-color: beige;
+.main-container {
+  height: 77vh;
+  display: flex;
+  flex-flow: row nowrap;
+  padding-left: 30px;
+  padding-top: 30px;
+  gap: 0.5rem;
+  background-color: beige;
 }
 /* ----------------- END OF MAIN CONTAINER ---------------------- */
 
 /* --------------- ASIDE ------------------------------------ */
-.aside{
+.aside {
 }
-.aside h2{
-    font-size:2.5rem;
-    font-weight: 600;
-    margin-bottom: 30px;
-    border-bottom: 2px double lightgray;
+.aside h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  border-bottom: 2px double lightgray;
 }
-.aside .addNewProject{
-    padding-left: 1rem;
-    width: 70%;
-    border-radius: 10px;
-    gap: 1rem;
+.aside .addNewProject {
+  padding-left: 1rem;
+  width: 70%;
+  border-radius: 10px;
+  gap: 1rem;
 }
-.aside .projects-container{
-    width: 25vw;
-    background-color: antiquewhite;
-    padding: 1rem;
-    display: flex;
-    flex-flow: column;
-    max-height: 74.3vh;
-    overflow: auto;
+.aside .projects-container {
+  width: 25vw;
+  background-color: antiquewhite;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column;
+  max-height: 74.3vh;
+  overflow: auto;
 }
-#filter{
-    font-size: 1.2rem;
-    text-align: center;
-    background-color: silver;
+#filter {
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: silver;
 }
-.filterDiv{
-    display: flex;
-    justify-content: end;
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    gap: 0.7rem;
-    padding-right: 20px;
+.filterDiv {
+  display: flex;
+  justify-content: end;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  gap: 0.7rem;
+  padding-right: 20px;
 }
 .filterDiv > label {
-    font-weight: 400;
-    font-size: 1.4rem;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
-.addNewProject{
-    display: flex;
-    transition: all 0.2s ease-in;
+.addNewProject {
+  display: flex;
+  transition: all 0.2s ease-in;
 }
-.addNewProject p{
-    font-size: 1.3rem;
-    align-self: center;
+.addNewProject p {
+  font-size: 1.3rem;
+  align-self: center;
 }
-.addNewProject:hover{
-    cursor: pointer;
-    background-color: #66fd66;
-    font-weight: bold;
+.addNewProject:hover {
+  cursor: pointer;
+  background-color: #66fd66;
+  font-weight: bold;
 }
-.aside .navbar{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+.aside .navbar {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
-.aside .add-icon{
-    width: 40px;
-    background: #66fd66;
-    border-radius: 100px;
-    transition: all 0.2s ease-in;
+.aside .add-icon {
+  width: 40px;
+  background: #66fd66;
+  border-radius: 100px;
+  transition: all 0.2s ease-in;
 }
-.addNewProject:hover .add-icon{
-    transform: rotate(45deg)
+.addNewProject:hover .add-icon {
+  transform: rotate(45deg);
 }
-.dltIcon{
-    pointer-events: none;
+.dltIcon {
+  pointer-events: none;
 }
-.dltButton{
-    height: 2rem;
-    /* width: 2rem; */
-    transition: all 0.2s ease-out;
+.dltButton {
+  height: 2rem;
+  width: 2rem;
+  transition: all 0.2s ease-out;
 }
-.dltButton:hover{
-    background-color: rgba(240, 20, 20, 0.76);
+.dltButton:hover {
+  background-color: rgba(240, 20, 20, 0.76);
 }
-.dltButton:active{
-    transform: rotate(45deg);
+.dltButton:active {
+  transform: rotate(45deg);
 }
-.addTaskButton{
-    height: 2rem;
-    /* width: 2rem; */
-    transition: all 0.2s ease-out;
+.addTaskButton {
+  height: 2rem;
+  width: 2rem;
+  transition: all 0.2s ease-out;
 }
-i{
-    pointer-events: none;
-    width: 40px;
+i {
+  pointer-events: none;
+  width: 40px;
 }
-.add-task-image{
-    width: 40px;
-    background: #66fd66;
-    border-radius: 100px;
+.add-task-image {
+  width: 40px;
+  background: #66fd66;
+  border-radius: 100px;
 }
-.addTaskButton:hover{
-    background-color: #66fd66;
+.addTaskButton:hover {
+  background-color: #66fd66;
 }
-.addTaskButton:active{
-    transform: translateY(-20px);
+.addTaskButton:active {
+  transform: translateY(-20px);
 }
-.newItemDiv{
-    display: flex;
-    width: 55%;
-    justify-content: space-between;
-    padding-top: 2rem;
+.newItemDiv {
+  display: flex;
+  width: 55%;
+  justify-content: space-between;
+  padding-top: 2rem;
 }
-.createdLi{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 1.3rem;
-    width: fit-content;
-    gap: 2rem;
-    margin-top: 1rem;
+.createdLi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.3rem;
+  width: fit-content;
+  gap: 2rem;
+  margin-top: 1rem;
 }
-.projectNameSpan{
-    cursor: pointer;
+.projectNameSpan {
+  cursor: pointer;
 }
 .active,
-.projectNameSpan:hover{
-    background-color: rgb(211, 211, 12);
-    cursor: pointer;
+.projectNameSpan:hover {
+  background-color: rgb(211, 211, 12);
+  cursor: pointer;
 }
-.projectCard{
-    box-shadow: -1px -1px 14px 1px;
-    display: flex;
-    flex-flow: column;
-    padding: 0.5rem;
-    gap: 2rem;
-    width: fit-content;
-    background-color: antiquewhite;
-    max-width: 35rem;
+.projectCard {
+  box-shadow: -1px -1px 14px 1px;
+  display: flex;
+  flex-flow: column;
+  padding: 0.5rem;
+  gap: 2rem;
+  width: fit-content;
+  background-color: antiquewhite;
+  max-width: 35rem;
 }
-.projectCard.completed{
-    background-color: lightgreen;
+.projectCard.completed {
+  background-color: lightgreen;
 }
-.projectCardName{
-    color: rgb(195 195 4);
-    border-bottom: 1px solid black;
+.projectCardName {
+  color: rgb(195 195 4);
+  border-bottom: 1px solid black;
 }
-.projectCardDescription{
-    font-family: cursive;
-    font-size: 1.3rem;
-    border-bottom: 1px solid black;
+.projectCardDescription {
+  font-family: cursive;
+  font-size: 1.3rem;
+  border-bottom: 1px solid black;
 }
-.projectCardDate{
-    font-size: 1.25rem;
-    font-family: ui-monospace;
-    font-weight: 900;
-    color: tomato;
-    border-bottom: 1px solid black;
+.projectCardDate {
+  font-size: 1.25rem;
+  font-family: ui-monospace;
+  font-weight: 900;
+  color: tomato;
+  border-bottom: 1px solid black;
 }
 
 /* ---------------- END OF ASIDE --------------------------- */
 
 /* --------------- SECTION --------------------------------- */
-.main-section-container{
-    display: flex;
+.main-section-container {
+  display: flex;
 }
-.main-section{
-    /* border: 2px solid black; */
-    width: 71.5vw;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2.5rem;
+.main-section {
+  /* border: 2px solid black; */
+  width: 71.5vw;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
 }
-.projectNameDisplay{
-    
+.projectNameDisplay {
 }
 #project-name {
-    padding: 7px;
-    width: 15rem;
+  padding: 7px;
+  width: 15rem;
 }
-.project-form{
-    display: flex;
-    flex-flow: column;
-    padding-top: 1rem;
-    gap: 0.5rem;
-    padding-left: 3rem;
+.project-form {
+  display: flex;
+  flex-flow: column;
+  padding-top: 1rem;
+  gap: 0.5rem;
+  padding-left: 3rem;
 }
-.project-name{
-    display: none;
-    flex-flow: column nowrap;
+.project-name {
+  display: none;
+  flex-flow: column nowrap;
 }
-.project-name.show{
-    display: flex;
-
+.project-name.show {
+  display: flex;
 }
-.project-button{
-    width: 6rem;
-    align-self: start;
-    padding: 0.5rem;
-    font-weight: 600;
-    background-color: lemonchiffon;
+.project-button {
+  width: 6rem;
+  align-self: start;
+  padding: 0.5rem;
+  font-weight: 600;
+  background-color: lemonchiffon;
 }
-.taskForm{
-    display: flex;
-    flex-flow: column;
-    gap: 1.3rem;
-    width: 300px;
-    border: 5px solid;
-    padding: 1.3rem;
-    border-radius: 20px;
+.taskForm {
+  display: flex;
+  flex-flow: column;
+  gap: 1.3rem;
+  width: 300px;
+  border: 5px solid;
+  padding: 1.3rem;
+  border-radius: 20px;
 }
-h2 > span{
-    color: rgb(195 195 4);
-    text-transform: uppercase;
+h2 > span {
+  color: rgb(195 195 4);
+  text-transform: uppercase;
 }
-.closeButton{
-    width: 20px;
-    border-radius: 100%;
-    align-self: end;
-    background-color: rgba(240, 20, 20, 0.76);
-    margin-top: -10px;
+.closeButton {
+  width: 20px;
+  border-radius: 100%;
+  align-self: end;
+  background-color: rgba(240, 20, 20, 0.76);
+  margin-top: -10px;
 }
 .taskName,
 .taskDescription,
-.dueDate{
-    padding: 7px;
+.dueDate {
+  padding: 7px;
 }
-.dateDiv{
-    display: flex;
-    flex-flow: column;
+.dateDiv {
+  display: flex;
+  flex-flow: column;
 }
-.buttonDiv{
-    display: flex;
-    justify-content: center;
+.buttonDiv {
+  display: flex;
+  justify-content: center;
 }
-.submitTask{
-    width: 2.5rem;
-    border-radius: 100px;
+.submitTask {
+  width: 2.5rem;
+  border-radius: 100px;
 }
-.alertDiv{
-    padding: 0.5rem;
-    display: flex;
-    width: 70%;
-    justify-content: center;
-    font-size: 1.3rem;
-    font-weight: 600;
-    border-radius: 10px;
+.alertDiv {
+  padding: 0.5rem;
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 10px;
 }
-.buttonsDiv{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
+.buttonsDiv {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }
-.buttonsDiv > button{
-    height: 1.5rem;
-    width: 1.5rem;
+.buttonsDiv > button {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 .editButton,
 .completedButton,
-.trashButton{
-    background-color: darkgray;
+.trashButton {
+  background-color: darkgray;
 }
 .editButton:hover,
 .completedButton:hover,
-.trashButton:hover{
-    background-color: rgb(195 195 4);
+.trashButton:hover {
+  background-color: rgb(195 195 4);
 }
 /* ---------------- END OF SECTION ------------------------- */
 
 /* -------------- FOOTER ---------------------------------- */
-.footer{
-    height: 8vh;
-    background-color: lemonchiffon;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    letter-spacing: 0.3rem;
+.footer {
+  height: 8vh;
+  background-color: lemonchiffon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
 }
 /* -------------- END OF FOOTER ---------------------------- */
