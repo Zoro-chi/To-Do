@@ -20,7 +20,6 @@ class UI {
   static loadSavedProjects = () => {
     const savedProjects = ProjectStore.store;
     document.addEventListener("DOMContentLoaded", () => {
-      console.log(savedProjects);
       savedProjects.forEach((project) => {
         let nameInput = document.querySelector("#project-name");
         const newProjectDiv = document.createElement("div");
@@ -64,10 +63,12 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
-      display.innerText = "";
       mainSection.firstChild.innerText = "";
+      display.innerText = "";
+      display.style.display = "flex";
+      display.style.flexFlow = "column";
+      display.style.gap = "1rem";
       // DISPLAY COMPLETED PROJECTS
-      console.log(completedList);
       completedList.forEach((task) => {
         // CREATE A CARD FOR EACH TASK
         const projectCard = document.createElement("div");
@@ -284,25 +285,24 @@ class UI {
       checkMark.innerText = "✅";
       checkMark.addEventListener("click", () => {
         // CHECK IF TASK HAS COMPLETED CLASS || ADD COMPLETED CLASS TO TASK
-        if (
-          checkMark.parentElement.parentElement.classList.contains("completed")
-        ) {
-          checkMark.parentElement.parentElement.classList.remove("completed");
+        if (task.completed) {
+          task.classList.add("completed");
+        }
+        if (!task.completed) {
+          task.completed = true;
+          UI.showAlert(`${task.name} added to completed list`);
+          completedList.push(task);
+          localStorage.setItem("completed", JSON.stringify(completedList));
+          console.log(completedList);
+        } else {
+          task.completed = false;
           UI.showAlert(`${task.name} removed from completed list`);
           completedList.splice(completedList.indexOf(task), 1);
           localStorage.setItem("completed", JSON.stringify(completedList));
           console.log(completedList);
-        } else {
-          checkMark.parentElement.parentElement.classList.add("completed");
-          if (completedList.includes(task)) {
-            UI.showAlert(`${task.name} already added to completed list`, "err");
-          } else {
-            UI.showAlert(`${task.name} added to completed list`);
-            completedList.push(task);
-            localStorage.setItem("completed", JSON.stringify(completedList));
-          }
         }
       });
+
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";
       deleteButton.classList.add("trashButton");
