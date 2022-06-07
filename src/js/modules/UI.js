@@ -285,21 +285,20 @@ class UI {
       checkMark.innerText = "✅";
       checkMark.addEventListener("click", () => {
         // CHECK IF TASK HAS COMPLETED CLASS || ADD COMPLETED CLASS TO TASK
-        if (task.completed) {
-          task.classList.add("completed");
-        }
+        const taskObj = checkMark.parentElement.parentElement;
+        console.log(tasksArr);
         if (!task.completed) {
           task.completed = true;
+          projectCard.style.backgroundColor = "lightgreen";
           UI.showAlert(`${task.name} added to completed list`);
           completedList.push(task);
           localStorage.setItem("completed", JSON.stringify(completedList));
-          console.log(completedList);
         } else {
           task.completed = false;
+          projectCard.style.backgroundColor = "antiquewhite";
           UI.showAlert(`${task.name} removed from completed list`);
           completedList.splice(completedList.indexOf(task), 1);
           localStorage.setItem("completed", JSON.stringify(completedList));
-          console.log(completedList);
         }
       });
 
