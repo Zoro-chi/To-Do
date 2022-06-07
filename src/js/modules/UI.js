@@ -53,6 +53,21 @@ class UI {
         newProject.append(addTaskToProject);
         const projectDisplay = document.querySelector(".navbar");
         projectDisplay.appendChild(newProjectDiv);
+
+        const tasks = project.tasks;
+        tasks.forEach((task) => {
+          const myId = task.myId;
+          const taskName = task.name;
+          const taskDescription = task.description;
+          const dueDate = task.date;
+
+          const reloadTask = new Tasks(
+            myId,
+            taskName,
+            taskDescription,
+            dueDate
+          );
+        });
       });
     });
   };
@@ -108,7 +123,7 @@ class UI {
     if (newProjectName.length <= 0) {
       UI.showAlert("Please enter a project name", "err");
     } else {
-      const newProjectObject = new Project(newProjectName, newProjectName);
+      let newProjectObject = new Project(newProjectName, newProjectName);
       console.log(newProjectObject);
       ProjectStore.addToLibrary(newProjectObject);
       UI.createLi();
@@ -286,21 +301,25 @@ class UI {
       checkMark.addEventListener("click", () => {
         // CHECK IF TASK HAS COMPLETED CLASS || ADD COMPLETED CLASS TO TASK
         const taskObj = checkMark.parentElement.parentElement;
-        console.log(tasksArr);
-        if (!task.completed) {
-          task.completed = true;
+        if (task.completed !== "true") {
+          task.completed = "true";
           projectCard.style.backgroundColor = "lightgreen";
           UI.showAlert(`${task.name} added to completed list`);
           completedList.push(task);
           localStorage.setItem("completed", JSON.stringify(completedList));
+          localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
         } else {
-          task.completed = false;
+          task.completed = "false";
           projectCard.style.backgroundColor = "antiquewhite";
           UI.showAlert(`${task.name} removed from completed list`);
           completedList.splice(completedList.indexOf(task), 1);
           localStorage.setItem("completed", JSON.stringify(completedList));
+          localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
         }
       });
+      if (task.completed === "true") {
+        projectCard.style.backgroundColor = "lightgreen";
+      }
 
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";

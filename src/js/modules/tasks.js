@@ -6,7 +6,7 @@ class Tasks {
     this.name = name;
     this.description = description;
     this.date = dueDate;
-    this.completed = false;
+    this.completed = "";
   }
 
   setId(myId) {
