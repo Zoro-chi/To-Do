@@ -331,7 +331,18 @@ class UI {
           `${task.name} deleted from ${selectedProject[0].name}`,
           "succ"
         );
-        selectedProject[0].deleteTask(task.name);
+        // selectedProject[0].deleteTask(task.name);
+        console.log(task.myId);
+        let project = ProjectStore.store.find(
+          (proj) => proj.myId === task.myId
+        );
+        console.log(project);
+        let index = project.tasks.findIndex((obj) => obj.name === task.name);
+        if (index > -1) {
+          project.tasks.splice(index, 1);
+          localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
+        }
+        console.log(project);
       });
 
       projectCard.appendChild(taskName);
