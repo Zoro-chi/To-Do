@@ -13,6 +13,7 @@ const filter = document.querySelector("#filter");
 
 let newProjectName;
 const completedList = ProjectStore.completed;
+const currentList = ProjectStore.current;
 let selectedProjectName;
 
 class UI {
@@ -53,21 +54,6 @@ class UI {
         newProject.append(addTaskToProject);
         const projectDisplay = document.querySelector(".navbar");
         projectDisplay.appendChild(newProjectDiv);
-
-        const tasks = project.tasks;
-        tasks.forEach((task) => {
-          const myId = task.myId;
-          const taskName = task.name;
-          const taskDescription = task.description;
-          const dueDate = task.date;
-
-          const reloadTask = new Tasks(
-            myId,
-            taskName,
-            taskDescription,
-            dueDate
-          );
-        });
       });
     });
   };
@@ -106,6 +92,49 @@ class UI {
         projectCard.appendChild(dueDate);
         display.appendChild(projectCard);
       });
+    } else if (selectedFilter === "current") {
+      mainSection.firstChild.innerText = "";
+      display.innerText = "";
+      display.style.display = "flex";
+      display.style.flexFlow = "column";
+      display.style.gap = "1rem";
+
+      let arr = [];
+      // GET TASKS OF ALL PROJECTS
+      ProjectStore.store.forEach((proj) => {
+        arr.push(proj.tasks);
+      });
+      arr = arr.flat();
+      let curr = [];
+      // FILTER FOR UN-COMPLETED TASKS
+      arr.forEach((task) => {
+        if (task.completed === "") {
+          curr.push(task);
+          localStorage.setItem("currArr", JSON.stringify(curr));
+        }
+      });
+
+      curr.forEach((task) => {
+        // CREATE A CARD FOR EACH TASK
+        const projectCard = document.createElement("div");
+        projectCard.classList.add("projectCard");
+        const taskName = document.createElement("h2");
+        taskName.classList.add("projectCardName");
+        const taskDescription = document.createElement("p");
+        taskDescription.classList.add("projectCardDescription");
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("projectCardDate");
+
+        // SET TASK DETAILS
+        taskName.innerText = `Task : ${task.name}`;
+        taskDescription.innerText = `Description : ${task.description}`;
+        dueDate.innerText = `Due Date : ${task.date}`;
+
+        projectCard.appendChild(taskName);
+        projectCard.appendChild(taskDescription);
+        projectCard.appendChild(dueDate);
+        display.appendChild(projectCard);
+      });
     }
   };
 
@@ -124,7 +153,6 @@ class UI {
       UI.showAlert("Please enter a project name", "err");
     } else {
       let newProjectObject = new Project(newProjectName, newProjectName);
-      console.log(newProjectObject);
       ProjectStore.addToLibrary(newProjectObject);
       UI.createLi();
     }
@@ -331,18 +359,14 @@ class UI {
           `${task.name} deleted from ${selectedProject[0].name}`,
           "succ"
         );
-        // selectedProject[0].deleteTask(task.name);
-        console.log(task.myId);
         let project = ProjectStore.store.find(
           (proj) => proj.myId === task.myId
         );
-        console.log(project);
         let index = project.tasks.findIndex((obj) => obj.name === task.name);
         if (index > -1) {
           project.tasks.splice(index, 1);
           localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
         }
-        console.log(project);
       });
 
       projectCard.appendChild(taskName);
@@ -379,7 +403,6 @@ class UI {
     } else {
       // CREATE TASK OBJECT
       const newTaskObject = new Tasks(myId, taskName, taskDescription, date);
-      console.log(newTaskObject);
 
       // ADD TASK TO CORESSPONDING PROJECT
       const myProject = ProjectStore.findProject(myId)[0].tasks;
