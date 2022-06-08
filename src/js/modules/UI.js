@@ -328,7 +328,6 @@ class UI {
       checkMark.innerText = "✅";
       checkMark.addEventListener("click", () => {
         // CHECK IF TASK HAS COMPLETED CLASS || ADD COMPLETED CLASS TO TASK
-        const taskObj = checkMark.parentElement.parentElement;
         if (task.completed !== "true") {
           task.completed = "true";
           projectCard.style.backgroundColor = "lightgreen";

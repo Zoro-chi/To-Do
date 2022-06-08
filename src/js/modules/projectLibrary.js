@@ -14,6 +14,16 @@ class ProjectStore {
       this.store.splice(index, 1);
       localStorage.setItem("projects", JSON.stringify(this.store));
     }
+
+    // DELETES TASKS FROM DELETED PROJECTS IN COMPLETED LIST
+    let task = project.tasks;
+    task.forEach((tsk) => {
+      if (tsk.completed === "true") {
+        let index = this.completed.findIndex((obj) => obj === tsk);
+        this.completed.splice(index, 1);
+        localStorage.setItem("completed", JSON.stringify(this.completed));
+      }
+    });
   };
 
   static findProject = (myId) => {
