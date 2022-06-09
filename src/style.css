@@ -117,7 +117,6 @@ button:active {
   pointer-events: none;
 }
 .dltButton {
-  height: 2rem;
   width: 2rem;
   transition: all 0.2s ease-out;
 }
@@ -128,7 +127,6 @@ button:active {
   transform: rotate(45deg);
 }
 .addTaskButton {
-  height: 2rem;
   width: 2rem;
   transition: all 0.2s ease-out;
 }
@@ -209,7 +207,6 @@ i {
   display: flex;
 }
 .main-section {
-  /* border: 2px solid black; */
   width: 71.5vw;
   display: flex;
   flex-flow: column;
