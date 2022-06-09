@@ -215,7 +215,7 @@ i {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1rem;
 }
 .projectNameDisplay {
 }
@@ -316,6 +316,15 @@ h2 > span {
 .completedButton:hover,
 .trashButton:hover {
   background-color: rgb(195 195 4);
+}
+.deleteAllCompleted{
+  min-height: 3rem;
+  width: 9rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: red;
+  color: navajowhite;
+  border-radius: 50px;
 }
 /* ---------------- END OF SECTION ------------------------- */
 

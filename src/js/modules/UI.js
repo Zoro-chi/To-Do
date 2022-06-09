@@ -1,7 +1,7 @@
 import { Project } from "./project.js";
 import { ProjectStore } from "./projectLibrary.js";
 import { Tasks } from "./tasks.js";
-import { date } from "date-fns";
+import { isWithinInterval, add, sub, toDate } from "date-fns";
 
 // DOM SELECTORS
 const projectNameDiv = document.querySelector(".project-name");
@@ -65,6 +65,16 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
+      const deleteAll = document.createElement("button");
+      deleteAll.classList.add("deleteAllCompleted");
+      deleteAll.innerText = "Delete all";
+      deleteAll.addEventListener("click", () => {
+        completedList.splice(0, completedList.length);
+        localStorage.setItem("completed", JSON.stringify(completedList));
+        display.textContent = "";
+        console.log(completedList);
+      });
+
       mainSection.firstChild.innerText = "";
       display.innerText = "";
       display.style.display = "flex";
@@ -92,6 +102,7 @@ class UI {
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
         display.appendChild(projectCard);
+        mainSection.insertBefore(deleteAll, display);
       });
     } else if (selectedFilter === "current") {
       mainSection.firstChild.innerText = "";
@@ -160,6 +171,56 @@ class UI {
         const projectCard = document.createElement("div");
         projectCard.classList.add("projectCard");
         projectCard.style.backgroundColor = "firebrick";
+        const taskName = document.createElement("h2");
+        taskName.classList.add("projectCardName");
+        const taskDescription = document.createElement("p");
+        taskDescription.classList.add("projectCardDescription");
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("projectCardDate");
+
+        // SET TASK DETAILS
+        taskName.innerText = `Task : ${task.name}`;
+        taskDescription.innerText = `Description : ${task.description}`;
+        dueDate.innerText = `Due Date : ${task.date}`;
+
+        projectCard.appendChild(taskName);
+        projectCard.appendChild(taskDescription);
+        projectCard.appendChild(dueDate);
+        display.appendChild(projectCard);
+      });
+    } else if (selectedFilter === "thisWeek") {
+      mainSection.firstChild.innerText = "";
+      display.innerText = "";
+      display.style.display = "flex";
+      display.style.flexFlow = "column";
+      display.style.gap = "1rem";
+
+      let thisWeek = [];
+      let tasks = [];
+      const startWeek = toDate(sub(new Date(), { days: 1 }));
+      const endWeek = toDate(add(new Date(startWeek), { days: 7 }));
+
+      console.log(startWeek);
+      console.log(endWeek);
+
+      ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
+      tasks = tasks.flat();
+      tasks.forEach((task) => {
+        task.date = new Date(task.date.split("-").join(",")).toDateString();
+        if (
+          isWithinInterval(toDate(new Date(task.date)), {
+            start: startWeek,
+            end: endWeek,
+          })
+        ) {
+          thisWeek.push(task);
+        }
+      });
+      thisWeek.forEach((task) => {
+        // CREATE A CARD FOR EACH TASK
+        const projectCard = document.createElement("div");
+        projectCard.classList.add("projectCard");
+        projectCard.style.backgroundColor = "navajowhite";
         const taskName = document.createElement("h2");
         taskName.classList.add("projectCardName");
         const taskDescription = document.createElement("p");
@@ -468,7 +529,6 @@ class UI {
     const alertDiv = document.createElement("div");
     alertDiv.classList.add("alertDiv");
     const alertMsg = document.createTextNode(message);
-    // alertMsg.classList.add('alertMsg')
     alertDiv.appendChild(alertMsg);
 
     if (status === "err") {
