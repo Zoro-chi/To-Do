@@ -117,7 +117,7 @@ button:active {
   pointer-events: none;
 }
 .dltButton {
-  width: 2rem;
+  height: 2rem;
   transition: all 0.2s ease-out;
 }
 .dltButton:hover {
@@ -127,7 +127,7 @@ button:active {
   transform: rotate(45deg);
 }
 .addTaskButton {
-  width: 2rem;
+  height: 2rem;
   transition: all 0.2s ease-out;
 }
 i {
