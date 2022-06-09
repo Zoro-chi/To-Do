@@ -1,6 +1,7 @@
 import { Project } from "./project.js";
 import { ProjectStore } from "./projectLibrary.js";
 import { Tasks } from "./tasks.js";
+import { date } from "date-fns";
 
 // DOM SELECTORS
 const projectNameDiv = document.querySelector(".project-name");
@@ -118,6 +119,47 @@ class UI {
         // CREATE A CARD FOR EACH TASK
         const projectCard = document.createElement("div");
         projectCard.classList.add("projectCard");
+        const taskName = document.createElement("h2");
+        taskName.classList.add("projectCardName");
+        const taskDescription = document.createElement("p");
+        taskDescription.classList.add("projectCardDescription");
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("projectCardDate");
+
+        // SET TASK DETAILS
+        taskName.innerText = `Task : ${task.name}`;
+        taskDescription.innerText = `Description : ${task.description}`;
+        dueDate.innerText = `Due Date : ${task.date}`;
+
+        projectCard.appendChild(taskName);
+        projectCard.appendChild(taskDescription);
+        projectCard.appendChild(dueDate);
+        display.appendChild(projectCard);
+      });
+    } else if (selectedFilter === "today") {
+      mainSection.firstChild.innerText = "";
+      display.innerText = "";
+      display.style.display = "flex";
+      display.style.flexFlow = "column";
+      display.style.gap = "1rem";
+
+      //FORMAT DATE AND CHECK FOR TODAY'S TASKS
+      let todayDate = new Date().toDateString();
+      let todayArr = [];
+      let tasks = [];
+      ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
+      tasks = tasks.flat();
+      tasks.forEach((task) => {
+        task.date = new Date(task.date.split("-").join(",")).toDateString();
+        if (task.date === todayDate) {
+          todayArr.push(task);
+        }
+      });
+      todayArr.forEach((task) => {
+        // CREATE A CARD FOR EACH TASK
+        const projectCard = document.createElement("div");
+        projectCard.classList.add("projectCard");
+        projectCard.style.backgroundColor = "firebrick";
         const taskName = document.createElement("h2");
         taskName.classList.add("projectCardName");
         const taskDescription = document.createElement("p");
