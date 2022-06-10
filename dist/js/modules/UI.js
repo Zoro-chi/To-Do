@@ -65,15 +65,15 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
-      const deleteAll = document.createElement("button");
-      deleteAll.classList.add("deleteAllCompleted");
-      deleteAll.innerText = "Delete all";
-      deleteAll.addEventListener("click", () => {
-        completedList.splice(0, completedList.length);
-        localStorage.setItem("completed", JSON.stringify(completedList));
-        display.textContent = "";
-        console.log(completedList);
-      });
+      // const deleteAll = document.createElement("button");
+      // deleteAll.classList.add("deleteAllCompleted");
+      // deleteAll.innerText = "Delete all";
+      // deleteAll.addEventListener("click", () => {
+      //   completedList.splice(0, completedList.length);
+      //   localStorage.setItem("completed", JSON.stringify(completedList));
+      //   display.textContent = "";
+      //   console.log(completedList);
+      // });
 
       mainSection.firstChild.innerText = "";
       display.innerText = "";
@@ -102,7 +102,7 @@ class UI {
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
         display.appendChild(projectCard);
-        mainSection.insertBefore(deleteAll, display);
+        // mainSection.insertBefore(deleteAll, display);
       });
     } else if (selectedFilter === "current") {
       mainSection.firstChild.innerText = "";
@@ -420,12 +420,6 @@ class UI {
       //CREATE INTERFACE FOR PROJECT CARD
       const buttonsDiv = document.createElement("div");
       buttonsDiv.classList.add("buttonsDiv");
-      const editButton = document.createElement("button");
-      editButton.classList.add("editButton");
-      editButton.innerText = "✍️";
-      editButton.addEventListener("click", () => {
-        //
-      });
       const checkMark = document.createElement("button");
       checkMark.classList.add("completedButton");
       checkMark.innerText = "✅";
@@ -474,7 +468,6 @@ class UI {
       projectCard.appendChild(taskName);
       projectCard.appendChild(taskDescription);
       projectCard.appendChild(dueDate);
-      buttonsDiv.appendChild(editButton);
       buttonsDiv.appendChild(checkMark);
       buttonsDiv.appendChild(deleteButton);
       projectCard.appendChild(buttonsDiv);
