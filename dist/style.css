@@ -119,6 +119,7 @@ button:active {
 }
 .dltButton {
   height: 2rem;
+  width: 2rem;
   transition: all 0.2s ease-out;
 }
 .dltButton:hover {
@@ -129,6 +130,7 @@ button:active {
 }
 .addTaskButton {
   height: 2rem;
+  width: 2rem;
   transition: all 0.2s ease-out;
 }
 i {
@@ -347,6 +349,7 @@ h2 > span {
     overflow: auto;
     padding-left: 0;
     padding-top: 0;
+    height: 80vh;
   }
   .aside .projects-container{
     width: inherit;
@@ -354,6 +357,9 @@ h2 > span {
   .main-section{
     width: 100vw;
     gap: 2.5rem;
+  }
+  .header{
+    height: 12vh;
   }
   .header h1{
     font-size: 3rem;

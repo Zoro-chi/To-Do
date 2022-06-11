@@ -14,7 +14,6 @@ const filter = document.querySelector("#filter");
 
 let newProjectName;
 const completedList = ProjectStore.completed;
-const currentList = ProjectStore.current;
 let selectedProjectName;
 
 class UI {
@@ -65,15 +64,27 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
-      // const deleteAll = document.createElement("button");
-      // deleteAll.classList.add("deleteAllCompleted");
-      // deleteAll.innerText = "Delete all";
-      // deleteAll.addEventListener("click", () => {
-      //   completedList.splice(0, completedList.length);
-      //   localStorage.setItem("completed", JSON.stringify(completedList));
-      //   display.textContent = "";
-      //   console.log(completedList);
-      // });
+      let tasks = [];
+      ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
+      tasks = tasks.flat();
+
+      const deleteAll = document.createElement("button");
+      deleteAll.classList.add("deleteAllCompleted");
+      deleteAll.innerText = "Delete all";
+      deleteAll.addEventListener("click", () => {
+        console.log(tasks);
+        completedList.forEach((task) => {
+          if (tasks.includes(task)) {
+            console.log(task);
+            // ProjectStore.store.splice(ProjectStore.store.findIndex(task), 1);
+          }
+        });
+        // console.log(ProjectStore.store);
+        // completedList.splice(0, completedList.length);
+        // localStorage.setItem("completed", JSON.stringify(completedList));
+        // display.textContent = "";
+        // console.log(completedList);
+      });
 
       mainSection.firstChild.innerText = "";
       display.innerText = "";
@@ -101,32 +112,21 @@ class UI {
         projectCard.appendChild(taskName);
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
+        display.prepend(deleteAll);
         display.appendChild(projectCard);
-        // mainSection.insertBefore(deleteAll, display);
       });
-    } else if (selectedFilter === "current") {
+    } else if (selectedFilter === "all") {
       mainSection.firstChild.innerText = "";
       display.innerText = "";
       display.style.display = "flex";
       display.style.flexFlow = "column";
       display.style.gap = "1rem";
 
-      let arr = [];
-      // GET TASKS OF ALL PROJECTS
-      ProjectStore.store.forEach((proj) => {
-        arr.push(proj.tasks);
-      });
-      arr = arr.flat();
-      let curr = [];
-      // FILTER FOR UN-COMPLETED TASKS
-      arr.forEach((task) => {
-        if (task.completed === "") {
-          curr.push(task);
-          localStorage.setItem("currArr", JSON.stringify(curr));
-        }
-      });
+      let tasks = [];
+      ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
+      tasks = tasks.flat();
 
-      curr.forEach((task) => {
+      tasks.forEach((task) => {
         // CREATE A CARD FOR EACH TASK
         const projectCard = document.createElement("div");
         projectCard.classList.add("projectCard");
@@ -162,6 +162,8 @@ class UI {
       tasks = tasks.flat();
       tasks.forEach((task) => {
         task.date = new Date(task.date.split("-").join(",")).toDateString();
+        console.log(task.date);
+        console.log(new Date(task.date).toISOString());
         if (task.date === todayDate) {
           todayArr.push(task);
         }
