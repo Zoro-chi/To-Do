@@ -64,16 +64,16 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
+      const deleteDiv = document.createElement("div");
       const deleteAll = document.createElement("button");
       deleteAll.classList.add("deleteAllCompleted");
       deleteAll.innerText = "Delete all";
-      deleteAll.addEventListener("click", () => {
+      deleteDiv.addEventListener("click", () => {
         completedList.forEach((task) => {
           let id = task.myId;
           let project = ProjectStore.store.find(
             (project) => project.name === id
           );
-
           let index = project.tasks.findIndex((tsk) => tsk.name === task.name);
           console.log(project.tasks.splice(index, 1));
         });
@@ -109,7 +109,8 @@ class UI {
         projectCard.appendChild(taskName);
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
-        display.prepend(deleteAll);
+        deleteDiv.appendChild(deleteAll);
+        display.append(deleteDiv);
         display.appendChild(projectCard);
       });
     } else if (selectedFilter === "all") {
@@ -159,8 +160,6 @@ class UI {
       tasks = tasks.flat();
       tasks.forEach((task) => {
         task.date = format(new Date(task.date), "yyyy/MM/dd");
-        // console.log(task.date);
-        // console.log(todayDate);
 
         if (task.date === todayDate) {
           todayArr.push(task);
