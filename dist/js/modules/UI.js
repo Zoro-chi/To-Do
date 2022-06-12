@@ -159,9 +159,9 @@ class UI {
       tasks = tasks.flat();
       tasks.forEach((task) => {
         task.date = format(new Date(task.date), "yyyy/MM/dd");
-        console.log(task.date);
-        console.log(todayDate);
-        // console.log(format(new Date(task.date).toISOString()));
+        // console.log(task.date);
+        // console.log(todayDate);
+
         if (task.date === todayDate) {
           todayArr.push(task);
         }

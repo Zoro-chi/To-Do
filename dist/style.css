@@ -377,6 +377,13 @@ h2 > span {
 .addTaskButton{
   width: 4rem;
 }
+.projectCardDate{
+  font-size: 0.8rem;
+}
+.alertDiv{
+  font-size: 1rem;
+  width: 90%;
+}
 
 }
 
