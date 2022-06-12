@@ -33,6 +33,6 @@ class ProjectStore {
 
 // AN ARRAY TO STORE PROJECTS
 ProjectStore.store = JSON.parse(localStorage.getItem("projects")) || [];
-ProjectStore.completed = [];
+ProjectStore.completed = JSON.parse(localStorage.getItem("completed")) || [];
 
 export { ProjectStore };
