@@ -110,7 +110,7 @@ class UI {
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
         deleteDiv.appendChild(deleteAll);
-        display.append(deleteDiv);
+        display.prepend(deleteDiv);
         display.appendChild(projectCard);
       });
     } else if (selectedFilter === "all") {
