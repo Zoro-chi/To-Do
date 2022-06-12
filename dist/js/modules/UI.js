@@ -1,7 +1,7 @@
 import { Project } from "./project.js";
 import { ProjectStore } from "./projectLibrary.js";
 import { Tasks } from "./tasks.js";
-import { isWithinInterval, add, sub, toDate } from "date-fns";
+import { isWithinInterval, add, sub, toDate, format } from "date-fns";
 
 // DOM SELECTORS
 const projectNameDiv = document.querySelector(".project-name");
@@ -64,26 +64,23 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
-      let tasks = [];
-      ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
-      tasks = tasks.flat();
-
       const deleteAll = document.createElement("button");
       deleteAll.classList.add("deleteAllCompleted");
       deleteAll.innerText = "Delete all";
       deleteAll.addEventListener("click", () => {
-        console.log(tasks);
         completedList.forEach((task) => {
-          if (tasks.includes(task)) {
-            console.log(task);
-            // ProjectStore.store.splice(ProjectStore.store.findIndex(task), 1);
-          }
+          let id = task.myId;
+          let project = ProjectStore.store.find(
+            (project) => project.name === id
+          );
+
+          let index = project.tasks.findIndex((tsk) => tsk.name === task.name);
+          console.log(project.tasks.splice(index, 1));
         });
-        // console.log(ProjectStore.store);
-        // completedList.splice(0, completedList.length);
-        // localStorage.setItem("completed", JSON.stringify(completedList));
-        // display.textContent = "";
-        // console.log(completedList);
+        localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
+        completedList.splice(0, completedList.length);
+        localStorage.setItem("completed", JSON.stringify(completedList));
+        display.textContent = "";
       });
 
       mainSection.firstChild.innerText = "";
@@ -155,15 +152,16 @@ class UI {
       display.style.gap = "1rem";
 
       //FORMAT DATE AND CHECK FOR TODAY'S TASKS
-      let todayDate = new Date().toDateString();
+      let todayDate = format(new Date(), "yyyy/MM/dd");
       let todayArr = [];
       let tasks = [];
       ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
       tasks = tasks.flat();
       tasks.forEach((task) => {
-        task.date = new Date(task.date.split("-").join(",")).toDateString();
+        task.date = format(new Date(task.date), "yyyy/MM/dd");
         console.log(task.date);
-        console.log(new Date(task.date).toISOString());
+        console.log(todayDate);
+        // console.log(format(new Date(task.date).toISOString()));
         if (task.date === todayDate) {
           todayArr.push(task);
         }

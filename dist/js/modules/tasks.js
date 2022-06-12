@@ -1,4 +1,5 @@
 import { Project } from "./project";
+import { ProjectStore } from "./projectLibrary";
 
 class Tasks {
   constructor(myId, name, description, dueDate) {
