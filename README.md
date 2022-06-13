@@ -4,18 +4,22 @@ A simple To-do app, that stores PROJECTS and assigns tasks to each project. App 
 
 **Link to project:** https://zoro-todo.netlify.app/
 
-![alt tag]
 
-## How It's Made:
+
+## How To Use: 
+            *) Fairly straight forward and simple app
+            *) Projects are containers for similar tasks or to-do's and you create them first!
+            *) After creating a Project, click on the project to and a new heading stating the tasks for the project.
+            *) You can create tasks by clicking on the project you want and then clicking on the "+" symbol next to it.
+            *) All fields of the task form must be completed to submit!
+            *) ENJOY :)
 
 **Tech used:** HTML, CSS, JavaScript, webpack
 
 
 ## Optimizations
-*(optional)*
-
-You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews!
+I feel the UI class of the code base can be refactored further if I had more time (I rushed the ending). After completion i noticed aspects of my UI class code that should be in my Project or Tasks Class. It was also my first time working with date objects and also date-fns, the due Date on the "Today" and "This week" filters could be made consitent and not display different formats. 
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
+This is was a good way for me to learn about and practice OOP. I could have done a lot better in seperation of concerns of each class object, but also with the implementation of abstraction and encapsulation in this project shows I did learn somethings. 
