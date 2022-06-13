@@ -1,16 +1,15 @@
 
-# My Awesome Project
-Write a short sentence or two about this project and what it does. Be sure to include a link and a screenshot (we're front end devs so we can actually see our work!).
+# My To-Do App
+A simple To-do app, that stores PROJECTS and assigns tasks to each project. App persists through localstorage instead of a database. Tasks can be filtered.
 
 **Link to project:** https://zoro-todo.netlify.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+![alt tag]
 
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, webpack
 
-A simple To-do app, that stores PROJECTS and assigns tasks to each project. App persists through localstorage instead of a database. Tasks can be filtered.
 
 ## Optimizations
 *(optional)*
