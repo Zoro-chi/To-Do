@@ -64,18 +64,17 @@ class UI {
     if (selectedFilter === "none") {
       return;
     } else if (selectedFilter === "completed") {
-      const deleteDiv = document.createElement("div");
       const deleteAll = document.createElement("button");
       deleteAll.classList.add("deleteAllCompleted");
       deleteAll.innerText = "Delete all";
-      deleteDiv.addEventListener("click", () => {
+      deleteAll.addEventListener("click", () => {
         completedList.forEach((task) => {
           let id = task.myId;
           let project = ProjectStore.store.find(
             (project) => project.name === id
           );
           let index = project.tasks.findIndex((tsk) => tsk.name === task.name);
-          console.log(project.tasks.splice(index, 1));
+          project.tasks.splice(index, 1);
         });
         localStorage.setItem("projects", JSON.stringify(ProjectStore.store));
         completedList.splice(0, completedList.length);
@@ -109,9 +108,9 @@ class UI {
         projectCard.appendChild(taskName);
         projectCard.appendChild(taskDescription);
         projectCard.appendChild(dueDate);
-        deleteDiv.appendChild(deleteAll);
-        display.prepend(deleteDiv);
+        display.prepend(deleteAll);
         display.appendChild(projectCard);
+        mainSection.append(display);
       });
     } else if (selectedFilter === "all") {
       mainSection.firstChild.innerText = "";
@@ -198,9 +197,6 @@ class UI {
       let tasks = [];
       const startWeek = toDate(sub(new Date(), { days: 1 }));
       const endWeek = toDate(add(new Date(startWeek), { days: 7 }));
-
-      console.log(startWeek);
-      console.log(endWeek);
 
       ProjectStore.store.forEach((proj) => tasks.push(proj.tasks));
       tasks = tasks.flat();
