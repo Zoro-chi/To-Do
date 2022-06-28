@@ -4,6 +4,7 @@ A simple To-do app, that stores PROJECTS and assigns tasks to each project. App 
 
 **Link to project:** https://zoro-todo.netlify.app/
 
+![image](https://user-images.githubusercontent.com/96382060/176060041-b72a659a-34e4-4468-ad8a-af5672d05fcb.png)
 
 
 ## How To Use: 
