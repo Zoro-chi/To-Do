@@ -74,6 +74,7 @@ button:active {
   font-size: 1.2rem;
   text-align: center;
   background-color: silver;
+  cursor: pointer;
 }
 .filterDiv {
   display: flex;
@@ -119,7 +120,6 @@ button:active {
 }
 .dltButton {
   height: 2rem;
-  width: 2rem;
   transition: all 0.2s ease-out;
 }
 .dltButton:hover {
@@ -130,7 +130,6 @@ button:active {
 }
 .addTaskButton {
   height: 2rem;
-  width: 2rem;
   transition: all 0.2s ease-out;
 }
 i {
